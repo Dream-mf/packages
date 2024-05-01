@@ -6,3 +6,5 @@ Modern Frontend Libraries for use with Microfrontends and other javascript techn
 ## Builds
 
 [![Packages - Core](https://github.com/Dream-mf/packages/actions/workflows/npm-publish-core.yml/badge.svg)](https://github.com/Dream-mf/packages/actions/workflows/npm-publish-core.yml)
+
+[![Packages - Logging](https://github.com/Dream-mf/packages/actions/workflows/npm-publish-logging.yml/badge.svg)](https://github.com/Dream-mf/packages/actions/workflows/npm-publish-logging.yml)
