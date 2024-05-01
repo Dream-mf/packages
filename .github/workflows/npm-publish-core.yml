@@ -15,6 +15,9 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 21
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 8
       - run: npm ci
 
   publish-npm:
@@ -26,8 +29,9 @@ jobs:
         with:
           node-version: 21
           registry-url: https://registry.npmjs.org/
-      - run: npm ci
-      - run: npm publish
+      - run: pnpm i
         working-directory: packages/dmf-core
+      - run: pnpm run build
+      - run: cd dist && npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
