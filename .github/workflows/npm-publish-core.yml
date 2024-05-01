@@ -32,6 +32,6 @@ jobs:
       - run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NODE_AUTH_TOKEN }}" > .npmrc
         working-directory: ${{ env.PACKAGE_DIR }}/dist
         shell: bash
-      - run: ls -alh ${{ env.PACKAGE_DIR }}
+      - run: ls -alh ${{ env.PACKAGE_DIR }}/dist
       - run: npm publish
         working-directory: ${{ env.PACKAGE_DIR }}/dist
