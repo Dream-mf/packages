@@ -4,9 +4,11 @@ on:
   push:
     paths:
       - 'packages/dmf-core/**'
+      - '.github/workflows/npm-publish-core.yml'
   pull_request:
     paths:
       - 'packages/dmf-core/**'
+      - '.github/workflows/npm-publish-core.yml'
   release:  
     types: [created]
 
