@@ -56,7 +56,7 @@ importers:
 
   packages/dmf-logging:
     dependencies:
-      '@dream-mf/core':
+      '@dream.mf/core':
         specifier: 1.0.0
         version: link:../dmf-core
       react:
