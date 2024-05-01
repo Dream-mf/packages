@@ -9,6 +9,10 @@
     "node": ">=16",
     "npm": ">=8"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Dream-mf/packages.git"
+  },
   "scripts": {
     "build": "rollup -c && npm run copy",
     "copy": "cp package.json dist/ && cp readme.md dist/ && cp LICENSE dist/",
