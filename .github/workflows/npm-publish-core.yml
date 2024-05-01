@@ -46,7 +46,9 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: dist
-          path: ${{ env.PACKAGE_DIR }}/dist
+          path: ${{ env.PACKAGE_DIR }}
+      - run: ls -alh ${{ github.workspace }}
+      - run: ls -alh ${{ env.PACKAGE_DIR }}
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.npm_token }}
