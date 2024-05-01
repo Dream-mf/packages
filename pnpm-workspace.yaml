@@ -1,0 +1,3 @@
+packages:
+  - packages/dmf-core
+  - packages/dmf-logging
