@@ -40,6 +40,7 @@ jobs:
         with:
           node-version: 21
           registry-url: https://registry.npmjs.org/
+      - run: ls -alh ${{ env.PACKAGE_DIR }}
       - run: ls -alh ${{ env.PACKAGE_DIR }}/dist
       - run: npm publish
         working-directory: ${{ env.PACKAGE_DIR }}/dist
