@@ -22,8 +22,8 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 21
-      # - run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NODE_AUTH_TOKEN }}" > .npmrc
-      #   shell: bash
+      - run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NODE_AUTH_TOKEN }}" > .npmrc
+        shell: bash
       - uses: pnpm/action-setup@v3
         with:
           version: 8
@@ -34,6 +34,3 @@ jobs:
       - run: ls -alh ${{ env.PACKAGE_DIR }}
       - run: npm publish
         working-directory: ${{ env.PACKAGE_DIR }}/dist
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
-          NPM_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
