@@ -13,7 +13,7 @@ on:
     types: [created]
 
 jobs:
-  build:
+  build-and-publish:
     runs-on: ubuntu-latest
     env:
       PACKAGE_DIR: packages/dmf-core
@@ -30,18 +30,6 @@ jobs:
       - run: pnpm run build
         working-directory: ${{ env.PACKAGE_DIR }}
       - run: ls -alh ${{ env.PACKAGE_DIR }}
-
-  publish-npm:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 21
-          registry-url: https://registry.npmjs.org/
-      - run: ls -alh ${{ env.PACKAGE_DIR }}
-      - run: ls -alh ${{ env.PACKAGE_DIR }}/dist
       - run: npm publish
         working-directory: ${{ env.PACKAGE_DIR }}/dist
         env:
