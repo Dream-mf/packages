@@ -39,6 +39,9 @@ jobs:
         with:
           node-version: 21
           registry-url: https://registry.npmjs.org/
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 8
       - run: pnpm install
         working-directory: ${{ env.PACKAGE_DIR }}
       - run: pnpm run build
