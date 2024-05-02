@@ -1,5 +1,7 @@
 export const RuntimeName = 'DreamMF';
 
+export const RuntimeNotFoundError = 'Dream.mf Runtime was not detected. Attempting initialization.';
+
 export interface Remotes {
     url: string;
     scope: string;
