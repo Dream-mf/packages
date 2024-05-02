@@ -1,5 +1,5 @@
 /** Console log prefix for event messages */
-export const debugPrefix = `[ODYSSEY-LOGGER]`;
+export const debugPrefix = `[DREAM.MF-LOGGER]`;
 
 /** Log Config interface for the log listener */
 export interface LogConfig {
