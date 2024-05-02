@@ -1,4 +1,4 @@
-name: Packages - Dream.mf Core
+name: Publish - Dream.mf Core
 
 on:  
   push:

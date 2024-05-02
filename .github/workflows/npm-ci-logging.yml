@@ -1,4 +1,4 @@
-name: Packages - Dream.mf Logging
+name: CI - Dream.mf Logging
 
 on:  
   pull_request:

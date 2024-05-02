@@ -1,4 +1,4 @@
-name: Packages - Dream.mf Core
+name: CI - Dream.mf Core
 
 on:  
   pull_request:

@@ -1,4 +1,4 @@
-name: Packages - Dream.mf Logging
+name: Publish - Dream.mf Logging
 
 on:  
   push:
