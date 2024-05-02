@@ -11,7 +11,7 @@
   },
   "pnpm": {
     "overrides": {
-      "@dream.mf/core": "npm:@dream.mf/core@1.1.0"
+      "@dream.mf/core": "npm:@dream.mf/core@1.1.2"
     }
   },
   "scripts": {
@@ -22,7 +22,7 @@
   "dependencies": {
     "react": "18.1.0",
     "react-dom": "18.1.0",
-    "@dream.mf/core": "1.1.0"
+    "@dream.mf/core": "1.1.2"
   },
   "devDependencies": {
     "rollup": "^2.78.0",

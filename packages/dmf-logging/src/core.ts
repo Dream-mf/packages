@@ -1,5 +1,11 @@
 import { LogConfig } from "./types";
-import { init, validateRuntime, validateRuntimeProperty, registerRuntimeProperty } from "@dream.mf/core";
+import { 
+    init, 
+    validateRuntime, 
+    validateRuntimeProperty, 
+    registerRuntimeProperty,
+    RuntimeNotFoundError
+} from "@dream.mf/core";
 import { version } from "../package.json";
 
 /** Does the runtime have the logger already registered */
@@ -11,7 +17,7 @@ export const validateRuntimeLogger = () => {
  * its missing, it will set up the logger with the dream-mf runtime */
 export const setupRuntime = (logConfig: LogConfig) => {
     if (!validateRuntime()) {
-        console.warn('Dream.mf Runtime was not detected. Attempting initialization.');
+        console.warn(RuntimeNotFoundError);
         init();
     }
     if (!validateRuntimeProperty('logger')) {

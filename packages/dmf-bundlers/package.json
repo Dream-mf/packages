@@ -11,7 +11,7 @@
   },
   "pnpm": {
     "overrides": {
-      "@dream.mf/core": "npm:@dream.mf/core@1.1.0"
+      "@dream.mf/core": "npm:@dream.mf/core@1.1.2"
     }
   },
   "scripts": {
@@ -22,7 +22,7 @@
   "dependencies": {
     "react": "18.1.0",
     "react-dom": "18.1.0",
-    "@dream.mf/core": "1.1.0",
+    "@dream.mf/core": "1.1.2",
     "@module-federation/enhanced": "0.1.11",
     "css-loader": "^6.8.1",
 		"dotenv": "16.0.1",
