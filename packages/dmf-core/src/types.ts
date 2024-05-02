@@ -21,10 +21,16 @@ export interface Logger {
     config?: object;
 }
 
+export interface Plugin {
+    name: string;
+    config?: object;
+}
+
 export interface Runtime {
     version: string;
     logger?: Logger;
     bundler?: Bundler;
     authentication?: Authentication;
     remotes?: Array<Remotes>;
+    plugins?: Array<Plugin>;
 }
