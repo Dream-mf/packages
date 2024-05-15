@@ -1,7 +1,9 @@
-// @ts-nocheck
 import { registerRemotes } from "@module-federation/enhanced/runtime";
 import { DreamMFLogClient } from "@dream.mf/logging";
-import { registerRemote } from "@dream.mf/core";
+import { registerRuntimeRemote } from "@dream.mf/core";
+import { setupRuntime } from "./core";
+
+/** ==================================================================================== */
 
 declare global {
   interface WebpackEvent {
@@ -27,10 +29,12 @@ declare global {
   };
 }
 
-interface ImportRemoteOptions {
+/** ==================================================================================== */
+
+export interface ImportRemoteOptions {
   /** The url of the remote you want to use. */
   remoteUrl: string;
-  /** The webpack remote name being exposed, eg: "faq" */
+  /** The bundler remote name being exposed, eg: "faq" */
   scope: string;
   /** The module (component) being exposed, eg: "Application" */
   module: string;
@@ -40,20 +44,53 @@ interface ImportRemoteOptions {
   enableNoCache?: boolean;
 }
 
-interface LoadRemoteOptions {
+export interface LoadRemoteOptions {
+  /** The url of the remote you want to use. */
   url: string;
+  /** The bundler remote name being exposed, eg: "faq" */
   scope: string;
+  /** Should we postfix the url with a timestamp so its unique and the browser doesnt cache it */
   enableNoCache?: boolean;
 }
 
-const loadRemote = ({ url, scope, enableNoCache }: LoadRemoteOptions) =>
+/** ==================================================================================== */
+
+const _initSharing = async () => {
+  if (!__webpack_share_scopes__?.default) {
+    await __webpack_init_sharing__("default");
+  }
+};
+
+const _initContainer = async (containerScope: WebpackContainerScope) => {
+  try {
+    if (!containerScope.__initialized && !containerScope.__initializing) {
+      containerScope.__initializing = true;
+      await containerScope.init(__webpack_share_scopes__.default);
+      containerScope.__initialized = true;
+      delete containerScope.__initializing;
+    }
+  } catch (error) {
+    // If the container throws an error, it is probably because it is not a container.
+    // In that case, we can just ignore it.
+  }
+};
+
+/** ==================================================================================== */
+
+/** Preload a remote by url and scope for later lazy loading */
+export const preloadRemote = ({
+  url,
+  scope,
+  enableNoCache,
+}: LoadRemoteOptions) =>
   new Promise<void>((resolve, reject) => {
+    setupRuntime();
     const timestamp = enableNoCache ? `?t=${new Date().getTime()}` : "";
     __webpack_require__.l(
       `${url}${timestamp}`,
       (event) => {
         if (event?.type === "load") {
-          // Script loaded successfully:
+          // TODO: might want to register this with runtime if this is used to preload and not immediately load
           return resolve();
         }
         const realSrc = event?.target?.src;
@@ -70,33 +107,15 @@ const loadRemote = ({ url, scope, enableNoCache }: LoadRemoteOptions) =>
     );
   });
 
-const initSharing = async () => {
-  if (!__webpack_share_scopes__?.default) {
-    await __webpack_init_sharing__("default");
-  }
-};
-
-const initContainer = async (containerScope: WebpackContainerScope) => {
-  try {
-    if (!containerScope.__initialized && !containerScope.__initializing) {
-      containerScope.__initializing = true;
-      await containerScope.init(__webpack_share_scopes__.default);
-      containerScope.__initialized = true;
-      delete containerScope.__initializing;
-    }
-  } catch (error) {
-    // If the container throws an error, it is probably because it is not a container.
-    // In that case, we can just ignore it.
-  }
-};
-
-const importRemote = async <T>({
+/** Imports a remote for use with module federation, loads remote if not preloaded. */
+export const importRemote = async <T>({
   remoteUrl,
   scope,
   module,
   remoteUrlFallback,
   enableNoCache = false,
 }: ImportRemoteOptions): Promise<T> => {
+  setupRuntime();
   if (!window[scope]) {
     const remoteDetails = remoteUrlFallback
       ? { value: remoteUrlFallback }
@@ -104,27 +123,20 @@ const importRemote = async <T>({
 
     // Load the remote and initialize the share scope if it's empty
     await Promise.all([
-      loadRemote({
+      preloadRemote({
         url: remoteDetails.value,
         scope,
         enableNoCache,
       }),
-      initSharing(),
+      _initSharing(),
+      async () => {
+        registerRuntimeRemote(scope, null, remoteDetails.value);
+      },
     ]);
-    registerRemote(scope, module, remoteDetails.value);
-    DreamMFLogClient.logGeneral({
-      message: "Loaded a remote through module federation",
-      url: remoteDetails.value,
-      scope,
-      module,
-      remoteUrlFallback,
-      enableNoCache,
-    });
     if (!window[scope]) {
       const error = new Error(
-        `Remote loaded successfully but ${scope} could not be found! Verify that the name is correct in the Webpack configuration!`,
+        `Remote loaded successfully but ${scope} could not be found! Verify that the name is correct in the configuration!`,
       );
-      console.log({ error });
       DreamMFLogClient.logException(
         { url: remoteUrl, scope, module, remoteUrlFallback, enableNoCache },
         error,
@@ -133,7 +145,7 @@ const importRemote = async <T>({
     }
     // Initialize the container to get shared modules and get the module factory:
     const [, moduleFactory] = await Promise.all([
-      initContainer(window[scope]),
+      _initContainer(window[scope]),
       window[scope].get(module.startsWith("./") ? module : `./${module}`),
     ]);
     registerRemotes([
@@ -142,6 +154,8 @@ const importRemote = async <T>({
         entry: remoteDetails.value,
       },
     ]);
+    registerRuntimeRemote(scope, module, remoteDetails.value);
+    DreamMFLogClient.logFederation(remoteDetails.value, scope, module);
     return moduleFactory();
   } else {
     const moduleFactory = await window[scope].get(
@@ -151,4 +165,7 @@ const importRemote = async <T>({
   }
 };
 
-export default importRemote;
+export default {
+  importRemote,
+  preloadRemote,
+};
