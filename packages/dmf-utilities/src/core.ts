@@ -13,12 +13,6 @@ export const setupRuntime = () => {
     });
 }
 
-/** Registers a remote with the Dream.mf runtime so it can be discovered */
-export const storeRemote = (scope: string, module: string, url: string) => {
-
-}
-
 export default {
-    setupRuntime,
-    storeRemote
+    setupRuntime
 }
