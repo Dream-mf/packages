@@ -21,7 +21,7 @@ export const registerRuntimeProperty = (
 };
 
 /** Registers a plugin by name and any object you wish to supply. */
-export const registerPlugin = (pluginName: string, config: object) => {
+export const registerRuntimePlugin = (pluginName: string, config: object) => {
   if (!validateRuntimeProperty("plugins")) {
     window[RuntimeName].plugins = new Array<Plugin>();
   }
@@ -35,7 +35,11 @@ export const registerPlugin = (pluginName: string, config: object) => {
 };
 
 /** Registers a remote scope and module by url with the Dream.mf runtime so it can be discovered */
-export const registerRemote = (scope: string, module: string, url: string) => {
+export const registerRuntimeRemote = (
+  scope: string,
+  module: string,
+  url: string,
+) => {
   const hasRemotesInit = window[RuntimeName]["remotes"] !== undefined;
   if (!hasRemotesInit) {
     if (!validateRuntimeProperty("remotes")) {
@@ -60,6 +64,6 @@ export default {
   validateRuntime,
   validateRuntimeProperty,
   registerRuntimeProperty,
-  registerPlugin,
-  registerRemote,
+  registerRuntimePlugin,
+  registerRuntimeRemote,
 };

@@ -1,6 +1,6 @@
 {
   "name": "@dream.mf/core",
-  "version": "1.1.6",
+  "version": "1.2.0",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "typings": "dist/index.d.ts",
@@ -18,9 +18,7 @@
     "copy": "cp package.json dist/ && cp readme.md dist/ && cp LICENSE dist/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "dependencies": {
-    
-  },
+  "dependencies": {},
   "devDependencies": {
     "@rollup/plugin-commonjs": "^22.0.2",
     "@rollup/plugin-node-resolve": "^13.3.0",
