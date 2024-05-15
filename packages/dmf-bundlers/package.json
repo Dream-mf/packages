@@ -9,11 +9,6 @@
     "node": ">=16",
     "npm": ">=8"
   },
-  "pnpm": {
-    "overrides": {
-      "@dream.mf/core": "npm:@dream.mf/core@1.1.2"
-    }
-  },
   "scripts": {
     "build": "rollup -c && npm run copy",
     "copy": "cp package.json dist/ && cp readme.md dist/ && cp LICENSE dist/",

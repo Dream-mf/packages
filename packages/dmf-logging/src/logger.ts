@@ -53,6 +53,11 @@ export const DreamMFLogClient = {
         const customEvent = new CustomEvent(LogType.PageView, { detail: detail });
         window.dispatchEvent(customEvent);
     },
+    /** Function call forwarder setting custom event type to LogType PageView */
+    logFederation: (url, scope, module) => {
+        const customEvent = new CustomEvent(LogType.PageView, { detail: { url, scope, module } });
+        window.dispatchEvent(customEvent);
+    },
     /** Function call forwarder setting custom event type to a LogType which you pass through */
     log: (detail, loggerType) => {
         detail = _extendDetail(detail);

@@ -1,0 +1,27 @@
+name: CI - Dream.mf Utilities
+
+on:  
+  pull_request:
+    paths:
+      - 'packages/dmf-utilities/**'
+      - '.github/workflows/npm-publish-utilities.yml'
+  release:  
+    types: [created]
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    env:
+      PACKAGE_DIR: packages/dmf-utilities
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 21
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 8
+      - run: pnpm install
+        working-directory: ${{ env.PACKAGE_DIR }}
+      - run: pnpm run build
+        working-directory: ${{ env.PACKAGE_DIR }}

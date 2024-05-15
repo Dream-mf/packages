@@ -28,8 +28,13 @@ export interface Plugin {
     config?: object;
 }
 
+export interface Metadata {
+    
+}
+
 export interface Runtime {
     version: string;
+    environment: string;
     logger?: Logger;
     bundler?: Bundler;
     authentication?: Authentication;

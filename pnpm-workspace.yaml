@@ -5,3 +5,4 @@ packages:
   - packages/dmf-oidc
   - packages/dmf-bundlers
   - packages/dmf-testing
+  - packages/dmf-utilities
