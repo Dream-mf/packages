@@ -19,7 +19,7 @@
     "react-dom": "18.1.0",
     "react-router": "^6.22.2",
     "react-router-dom": "^6.22.2",
-    "@dream.mf/core": "1.1.5",
+    "@dream.mf/core": "1.2.0",
     "@dream.mf/logging": "1.0.2",
     "@module-federation/enhanced": "0.1.11"
   },
