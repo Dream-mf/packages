@@ -50,11 +50,15 @@ export const registerRuntimeRemote = (
     (item) => item.scope === scope,
   );
   if (!scopeExists) {
-    var record = { scope, modules: [module], url } as Remotes;
+    var record = {
+      scope,
+      modules: module == null ? [] : [module],
+      url,
+    } as Remotes;
     window[RuntimeName].remotes.push(record);
   } else {
     const s = window[RuntimeName].remotes.find((sc) => sc.scope === scope);
-    if (!s.modules.includes(module)) {
+    if (module !== null && !s.modules.includes(module)) {
       s.modules.push(module);
     }
   }
