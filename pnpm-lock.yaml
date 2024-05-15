@@ -403,11 +403,11 @@ importers:
   packages/dmf-utilities:
     dependencies:
       '@dream.mf/core':
-        specifier: 1.1.5
-        version: 1.1.5
+        specifier: 1.1.6
+        version: 1.1.6
       '@dream.mf/logging':
-        specifier: 1.0.2
-        version: 1.0.2
+        specifier: 1.1.0
+        version: 1.1.0
       '@module-federation/enhanced':
         specifier: 0.1.11
         version: 0.1.11(typescript@4.9.5)(vue-tsc@1.8.27(typescript@4.9.5))(webpack@5.91.0(esbuild@0.20.2))
@@ -851,8 +851,16 @@ packages:
     resolution: {integrity: sha512-K3dKEdNXte398mAvEScBgpWJHzLmdE/yW3S8fgR+//1jCLTdSjZdw3rIlCWbjxpkEF+7Rj2ZMRkyODVi3VwgfA==}
     engines: {node: '>=16', npm: '>=8'}
 
+  '@dream.mf/core@1.1.6':
+    resolution: {integrity: sha512-sXd831/s+co8wNMyTCXljd8eLbIOUt2ev6kTi8MWFB7UhpwfyLThBdXgjWsD3c5Hax0n0if889GgiUOsE9T4/g==}
+    engines: {node: '>=16', npm: '>=8'}
+
   '@dream.mf/logging@1.0.2':
     resolution: {integrity: sha512-aIMPeDBmhm6i2QVz2OknKjJhy/uXXhEC83EkBpfE6hJnjvMyjq5yMjAYsTM1/vd9J8SpddLIwFDSxzZne8YJsg==}
+    engines: {node: '>=16', npm: '>=8'}
+
+  '@dream.mf/logging@1.1.0':
+    resolution: {integrity: sha512-Zy0xtcZ1Un7nlQbiAA1YLW/cBTpp730zKb6Wt2Q1Jw4KsY1Dv21zgr94NCYFAqBU+qah0foHHSqQB8TTdkeryg==}
     engines: {node: '>=16', npm: '>=8'}
 
   '@esbuild/aix-ppc64@0.19.12':
@@ -4849,7 +4857,15 @@ snapshots:
 
   '@dream.mf/core@1.1.5': {}
 
+  '@dream.mf/core@1.1.6': {}
+
   '@dream.mf/logging@1.0.2':
+    dependencies:
+      '@dream.mf/core': 1.1.2
+      react: 18.1.0
+      react-dom: 18.1.0(react@18.1.0)
+
+  '@dream.mf/logging@1.1.0':
     dependencies:
       '@dream.mf/core': 1.1.2
       react: 18.1.0
