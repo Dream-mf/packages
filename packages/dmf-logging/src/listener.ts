@@ -26,7 +26,7 @@ const _noop = () => null;
 /** Handle the event and append any extra config based logic */
 const _handleEvent = (config, event, type, func) => {
   if (config.debug) {
-    console.log(debugPrefix, type, event.detail);
+    console.log(debugPrefix, "[DEBUG]", type, event.detail);
   }
   func(event);
 };
@@ -49,7 +49,7 @@ export const DreamMFLogListener = ({ config }: LogListenerProps) => {
   return null;
 };
 
-/** REgisters event listeners and appens a _noop for events not listened for */
+/** Registers event listeners and appens a _noop for events not listened for */
 export const RegisterListeners = (config: LogConfig) => {
   config.logGeneral &&
     window.addEventListener(LogType.General, (event) => {
