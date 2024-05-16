@@ -1,4 +1,4 @@
-import { RuntimeName, Plugin, Remotes } from "./types";
+import { RuntimeName, Plugin, Remotes, RemoteLoadType } from "./types";
 
 /** Has the dream-mf runtime been installed and initialized */
 export const validateRuntime = () => {
@@ -39,6 +39,7 @@ export const registerRuntimeRemote = (
   scope: string,
   module: string,
   url: string,
+  loadType?: RemoteLoadType,
 ) => {
   const hasRemotesInit = window[RuntimeName]["remotes"] !== undefined;
   if (!hasRemotesInit) {
@@ -54,6 +55,7 @@ export const registerRuntimeRemote = (
       scope,
       modules: module == null ? [] : [module],
       url,
+      loadType,
     } as Remotes;
     window[RuntimeName].remotes.push(record);
   } else {
