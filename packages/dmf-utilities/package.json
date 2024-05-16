@@ -1,6 +1,6 @@
 {
   "name": "@dream.mf/utilities",
-  "version": "0.9.4",
+  "version": "0.9.5",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "typings": "dist/index.d.ts",
@@ -21,7 +21,7 @@
     "react-router-dom": "^6.22.2",
     "@dream.mf/core": "1.2.1",
     "@dream.mf/logging": "1.1.2",
-    "@module-federation/enhanced": "0.1.13"
+    "@module-federation/runtime": "0.1.13"
   },
   "devDependencies": {
     "rollup": "^2.78.0",
