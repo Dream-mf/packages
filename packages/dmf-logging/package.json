@@ -1,12 +1,13 @@
 {
   "name": "@dream.mf/logging",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "typings": "dist/index.d.ts",
   "license": "MIT",
   "engines": {
     "node": ">=16",
+    "pnpm": ">=9",
     "npm": ">=8"
   },
   "scripts": {
@@ -17,7 +18,7 @@
   "dependencies": {
     "react": "18.1.0",
     "react-dom": "18.1.0",
-    "@dream.mf/core": "1.1.2"
+    "@dream.mf/core": "1.2.2"
   },
   "devDependencies": {
     "rollup": "^2.78.0",
