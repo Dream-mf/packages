@@ -1,11 +1,11 @@
 name: Publish - Dream.mf Logging
 
-on:  
+on:
   push:
     paths:
-      - 'packages/dmf-logging/**'
-      - '.github/workflows/npm-publish-logging.yml'
-  release:  
+      - "packages/dmf-logging/**"
+      - ".github/workflows/npm-publish-logging.yml"
+  release:
     types: [created]
 
 jobs:
@@ -20,7 +20,7 @@ jobs:
           node-version: 21
       - uses: pnpm/action-setup@v3
         with:
-          version: 8
+          version: 9
       - run: pnpm install
         working-directory: ${{ env.PACKAGE_DIR }}
       - run: pnpm run build
