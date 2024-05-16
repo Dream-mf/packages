@@ -187,8 +187,8 @@ importers:
   packages/dmf-logging:
     dependencies:
       '@dream.mf/core':
-        specifier: 1.1.2
-        version: 1.1.2
+        specifier: 1.2.2
+        version: 1.2.2
       react:
         specifier: 18.1.0
         version: 18.1.0
@@ -853,6 +853,10 @@ packages:
 
   '@dream.mf/core@1.2.1':
     resolution: {integrity: sha512-QCsZNnn/4zqQ1yaQ+qgjDygLWOMCqOdcj2y9RvgO5Y6FyruWejNvZ+u+6iihO0YDivvEqvPB0bXDiXamPQpFQQ==}
+    engines: {node: '>=16', npm: '>=8'}
+
+  '@dream.mf/core@1.2.2':
+    resolution: {integrity: sha512-Fp/lrzN4uvwz2YZHvn45wL/ijl30dDs2iGvn4NJ6/B1r2kIpdS3S8shIxS9H1HV9Smf1ck+NXjk7Ac8ACOE/GQ==}
     engines: {node: '>=16', npm: '>=8'}
 
   '@dream.mf/logging@1.0.2':
@@ -4864,6 +4868,8 @@ snapshots:
   '@dream.mf/core@1.2.0': {}
 
   '@dream.mf/core@1.2.1': {}
+
+  '@dream.mf/core@1.2.2': {}
 
   '@dream.mf/logging@1.0.2':
     dependencies:
