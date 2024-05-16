@@ -296,6 +296,9 @@ importers:
       '@rollup/plugin-typescript':
         specifier: ^8.3.4
         version: 8.5.0(rollup@2.79.1)(tslib@2.6.2)(typescript@4.9.5)
+      '@types/node':
+        specifier: ^18.17.17
+        version: 18.19.31
       rollup:
         specifier: ^2.78.0
         version: 2.79.1
