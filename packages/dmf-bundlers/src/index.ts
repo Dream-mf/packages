@@ -1,15 +1,10 @@
-import { withBaseWebpack } from "./webpack/config";
+import { withBaseWebpack } from "./webpack";
+import { withBaseRSPack } from "./rspack";
 import { DefaultRemoteName, DefaultContainerName } from "./common/types";
-// export * as rs from "./rspack";
 
 export default {
-    webpack: {
-        withBaseWebpack,
-        DefaultRemoteName,
-        DefaultContainerName
-    },
-    rspack: {
-
-    }
-}
-  
+  withBaseWebpack,
+  withBaseRSPack,
+  DefaultRemoteName,
+  DefaultContainerName,
+};
