@@ -12,9 +12,9 @@ export const _rulesCssStyles = () => {
     exclude: [/\.module.scss$/],
     use: [
       MiniCssExtractPlugin.loader,
-      loaders.cssLoader(),
-      loaders.postCssLoader,
-      loaders.sassLoader,
+      loaders._cssLoader(),
+      loaders._postCssLoader,
+      loaders._sassLoader,
     ],
     sideEffects: true,
   };
@@ -25,9 +25,9 @@ export const _rulesCssModules = () => {
     test: /\.module.scss$/,
     use: [
       MiniCssExtractPlugin.loader,
-      loaders.cssLoader(true),
-      loaders.postCssLoader,
-      loaders.sassLoader,
+      loaders._cssLoader(true),
+      loaders._postCssLoader,
+      loaders._sassLoader,
     ],
     sideEffects: true,
   };
