@@ -1,34 +1,33 @@
 import path from "path";
 
 /** Default minimal shared modules for module federation */
-export const defaultSharedModules = () => {
+export const _defaultSharedModules = () => {
   return {
-    react: { singleton: true, strictVersion: true, requiredVersion: "18.2.0" },
+    react: {
+      singleton: true,
+      strictVersion: true,
+      requiredVersion: "18.2",
+    },
     "react-dom": {
       singleton: true,
       strictVersion: true,
-      requiredVersion: "18.2.0",
+      requiredVersion: "18.2",
     },
     "react-router": {
       singleton: true,
       strictVersion: true,
-      requiredVersion: "6.22.2",
+      requiredVersion: "6.22",
     },
     "react-router-dom": {
       singleton: true,
       strictVersion: true,
-      requiredVersion: "6.22.2",
-    },
-    "@tanstack/react-query": {
-      singleton: true,
-      strictVersion: true,
-      requiredVersion: "5.25.0",
+      requiredVersion: "6.22",
     },
   };
 };
 
 /** Default output for webpack chunks and modules */
-export const defaultOutput = (remoteName) => {
+export const _defaultOutput = (remoteName) => {
   return {
     publicPath: remoteName === "container" ? "/" : "auto",
     chunkFilename: "[name].[contenthash].js",
@@ -38,12 +37,8 @@ export const defaultOutput = (remoteName) => {
   };
 };
 
-export const defaultOutputStyle = () => {
-  return "[name].[contenthash].css";
-};
-
 /** Default configuration for webpack dev server */
-export const defaultDevServer = (remoteName) => {
+export const _defaultDevServer = (remoteName) => {
   return {
     historyApiFallback: true,
     headers: {
@@ -55,25 +50,30 @@ export const defaultDevServer = (remoteName) => {
   };
 };
 
-export const defaultOptimizations = () => {
+export const _defaultOptimizations = () => {
   return {
     minimize: false,
   };
 };
 
-export const defaultAliases = () => {
+export const _defaultOutputStyle = () => {
+  return "[name].[contenthash].css";
+};
+
+export const _defaultAliases = () => {
   return { alias: { "@shared": path.resolve(__dirname, "../shared") } };
 };
 
-export const defaultExtensions = () => {
+export const _defaultExtensions = () => {
   return [".js", ".jsx", ".ts", ".tsx"];
 };
 
 export default {
-  defaultSharedModules,
-  defaultDevServer,
-  defaultOutput,
-  defaultOutputStyle,
-  defaultAliases,
-  defaultExtensions,
+  _defaultSharedModules,
+  _defaultOutputStyle,
+  _defaultDevServer,
+  _defaultOutput,
+  _defaultOptimizations,
+  _defaultAliases,
+  _defaultExtensions,
 };

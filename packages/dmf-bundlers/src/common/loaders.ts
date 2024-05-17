@@ -1,7 +1,7 @@
 const fs = require("fs");
 
 /** Minimal configuration for css loader */
-export const cssLoader = (hasCssModules = false) => {
+export const _cssLoader = (hasCssModules = false) => {
   const cssLoaderConfig = {
     loader: "css-loader",
     options: {
@@ -18,13 +18,13 @@ export const cssLoader = (hasCssModules = false) => {
 };
 
 /** Minimal configuration for postcss loader */
-export const postCssLoader = {
+export const _postCssLoader = {
   loader: "postcss-loader",
   options: { sourceMap: true },
 };
 
 /** Minimal configuration for sass loader */
-export const sassLoader = {
+export const _sassLoader = {
   loader: "sass-loader",
   options: {
     sassOptions: { quietDeps: true },
@@ -32,8 +32,7 @@ export const sassLoader = {
   },
 };
 
-/** Main environment variable loader */
-export const envLoader = () => {
+export const _envLoader = () => {
   const filePath = "../../host/.env";
   if (fs.existsSync(filePath) && process.env.NODE_ENV === "development") {
     require("dotenv").config({ path: filePath });
@@ -43,8 +42,8 @@ export const envLoader = () => {
 };
 
 export default {
-  cssLoader,
-  postCssLoader,
-  sassLoader,
-  envLoader,
+  _cssLoader,
+  _postCssLoader,
+  _sassLoader,
+  _envLoader,
 };
