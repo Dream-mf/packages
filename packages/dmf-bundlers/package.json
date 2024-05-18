@@ -1,6 +1,6 @@
 {
   "name": "@dream.mf/bundlers",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "typings": "dist/index.d.ts",
@@ -21,7 +21,7 @@
     "@module-federation/enhanced": "0.1.11",
     "css-loader": "^6.8.1",
     "dotenv": "16.0.1",
-    "dotenv-webpack": "7.1.0",
+    "dotenv-webpack": "8.1.0",
     "esbuild-loader": "^3.2.0",
     "eslint": "^8.49.0",
     "eslint-config-prettier": "^9.0.0",

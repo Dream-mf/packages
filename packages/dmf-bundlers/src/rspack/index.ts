@@ -9,6 +9,7 @@ import DotenvPlugin from "dotenv-webpack";
 import defaults from "../common/defaults";
 import loaders from "../common/loaders";
 import types from "../common/types";
+import rules from "../common/rules";
 
 /**
  * @param {Object} customConfig Config overrides to pass to the WebPackConfig and ModuleFederationPlugin.
@@ -88,7 +89,7 @@ export const withBaseRSPack = (customConfig: any, isTypescript: boolean) => {
           ],
           type: "css/auto",
         },
-        { test: /\.(png|svg|jpg|jpeg|mp3)$/, type: "asset/resource" },
+        rules._rulesAssets(),
       ],
     },
     plugins: [
