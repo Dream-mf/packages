@@ -23,6 +23,11 @@ export const _defaultSharedModules = () => {
       strictVersion: true,
       requiredVersion: "6.22",
     },
+    "react-oidc-context": {
+      singleton: true,
+      strictVersion: true,
+      requiredVersion: "3.0.0",
+    },
   };
 };
 
