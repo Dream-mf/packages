@@ -1,48 +1,59 @@
 {
-  "name": "@dream.mf/oidc",
-  "version": "0.9.7",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "typings": "dist/index.d.ts",
-  "license": "MIT",
-  "engines": {
-    "node": ">=16",
-    "npm": ">=8"
-  },
-  "scripts": {
-    "build": "rollup -c && npm run copy",
-    "copy": "cp package.json dist/ && cp readme.md dist/ && cp LICENSE dist/",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "dependencies": {
-    "react": "18.1.0",
-    "react-dom": "18.1.0",
-    "@dream.mf/core": "1.2.7",
-    "@dream.mf/logging": "1.0.2",
-    "@module-federation/enhanced": "0.1.11",
-    "@tanstack/query-core": "^5.24.1",
-    "@tanstack/react-query": "^5.24.1",
-    "oidc-client": "~1.11.5",
-    "oidc-client-ts": "~3.0.1",
-    "react-oidc-context": "^3.0.0",
-    "uuid": "^9.0.1"
-  },
-  "devDependencies": {
-    "rollup": "^2.78.0",
-    "@rollup/plugin-json": "6.1.0",
-    "rollup-plugin-dts": "^4.2.2",
-    "rollup-plugin-peer-deps-external": "^2.2.4",
-    "rollup-plugin-sass": "^1.2.13",
-    "rollup-plugin-terser": "^7.0.2",
-    "rollup-plugin-typescript2": "^0.32.1",
-    "rollup-plugin-esbuild": "^6.1.1",
-    "@rollup/plugin-commonjs": "^22.0.2",
-    "@rollup/plugin-node-resolve": "^13.3.0",
-    "@rollup/plugin-typescript": "^8.3.4",
-    "typescript": "^4.7.4",
-    "@types/node": "^18.17.17",
-    "tslib": "2.6.2",
-    "ts-jest": "^28.0.7",
-    "ts-loader": "^9.3.1"
-  }
+	"name": "@dream.mf/oidc",
+	"version": "0.10.0",
+	"main": "dist/index.js",
+	"module": "dist/index.mjs",
+	"typings": "dist/index.d.ts",
+	"authors": [
+		{
+			"name": "Chris Fryer",
+			"email": "cfryerdev@gmail.com"
+		},
+		{
+			"name": "Russell Canfield",
+			"email": "rcanfield86@gmail.com"
+		}
+	],
+	"license": "MIT",
+	"engines": {
+		"node": ">=16",
+		"npm": ">=8"
+	},
+	"scripts": {
+		"build": "rollup -c && npm run copy && npm run clean-dev-deps",
+		"copy": "cp package.json dist/ && cp readme.md dist/ && cp LICENSE dist/",
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"clean-dev-deps": "json -f ./dist/package.json -I -e \"delete this.devDependencies;\""
+	},
+	"dependencies": {
+		"@dream.mf/core": "^1.2.7",
+		"@dream.mf/logging": "^1.0.2",
+		"oidc-client": "~1.11.5",
+		"oidc-client-ts": "~3.0.1",
+		"react-oidc-context": "^3.0.0"
+	},
+	"peerDependencies": {
+		"react": "^18.1.0",
+		"react-dom": "^18.1.0",
+		"react-router-dom": "^6.22.2"
+	},
+	"devDependencies": {
+		"json": "11.0.0",
+		"rollup": "^2.78.0",
+		"@rollup/plugin-json": "6.1.0",
+		"rollup-plugin-dts": "^4.2.2",
+		"rollup-plugin-peer-deps-external": "^2.2.4",
+		"rollup-plugin-sass": "^1.2.13",
+		"rollup-plugin-terser": "^7.0.2",
+		"rollup-plugin-typescript2": "^0.32.1",
+		"rollup-plugin-esbuild": "^6.1.1",
+		"@rollup/plugin-commonjs": "^22.0.2",
+		"@rollup/plugin-node-resolve": "^13.3.0",
+		"@rollup/plugin-typescript": "^8.3.4",
+		"typescript": "^4.7.4",
+		"@types/node": "^18.17.17",
+		"tslib": "2.6.2",
+		"ts-jest": "^28.0.7",
+		"ts-loader": "^9.3.1"
+	}
 }
