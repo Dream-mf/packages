@@ -3,7 +3,7 @@ import { SigninSilentArgs } from "oidc-client-ts";
 import { hasAuthParams, useAuth } from "react-oidc-context";
 import DreamMFContextStore from "../extensions/url-store";
 import { DreamMFLogClient } from "@dream.mf/logging";
-//import { registerUserProfile } from "@dream.mf/core";
+import { registerUserProfile } from "@dream.mf/core";
 
 interface DreamMFContextGuardProps {
   children?: ReactNode | undefined;
@@ -36,7 +36,7 @@ export const DreamMFContextGuard = ({
 
   useEffect(() => {
     if (auth.isAuthenticated && auth.user) {
-      //registerUserProfile(auth.user);
+      registerUserProfile(auth.user);
     }
   }, [auth.user]);
 

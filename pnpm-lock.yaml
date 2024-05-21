@@ -257,8 +257,8 @@ importers:
   packages/dmf-oidc:
     dependencies:
       '@dream.mf/core':
-        specifier: 1.2.4
-        version: 1.2.4
+        specifier: 1.2.7
+        version: 1.2.7
       '@dream.mf/logging':
         specifier: 1.0.2
         version: 1.0.2
@@ -874,8 +874,8 @@ packages:
     resolution: {integrity: sha512-Fp/lrzN4uvwz2YZHvn45wL/ijl30dDs2iGvn4NJ6/B1r2kIpdS3S8shIxS9H1HV9Smf1ck+NXjk7Ac8ACOE/GQ==}
     engines: {node: '>=16', npm: '>=8'}
 
-  '@dream.mf/core@1.2.4':
-    resolution: {integrity: sha512-RtEBfTWSgb3E9pESwmZ0zmka4qT05yVUDABe/9lkJtXHWu/BYzTNGK4r0X6HAa324M5z/LTJ/pnVAeMwqx1i8A==}
+  '@dream.mf/core@1.2.7':
+    resolution: {integrity: sha512-+Y/6kLPzTYTFjhQfbRPZAZSKboMkQuRyZTt0vBTfPeEDxOs74ygYYy1HZWjn4nNLDbQEtucR4S3yrE0qP/UZUA==}
     engines: {node: '>=16', npm: '>=8'}
 
   '@dream.mf/logging@1.0.2':
@@ -5085,7 +5085,7 @@ snapshots:
 
   '@dream.mf/core@1.2.2': {}
 
-  '@dream.mf/core@1.2.4': {}
+  '@dream.mf/core@1.2.7': {}
 
   '@dream.mf/logging@1.0.2':
     dependencies:
