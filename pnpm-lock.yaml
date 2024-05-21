@@ -257,20 +257,11 @@ importers:
   packages/dmf-oidc:
     dependencies:
       '@dream.mf/core':
-        specifier: 1.2.7
+        specifier: ^1.2.7
         version: 1.2.7
       '@dream.mf/logging':
-        specifier: 1.0.2
-        version: 1.0.2
-      '@module-federation/enhanced':
-        specifier: 0.1.11
-        version: 0.1.11(typescript@4.9.5)(vue-tsc@1.8.27(typescript@4.9.5))(webpack@5.91.0(esbuild@0.20.2))
-      '@tanstack/query-core':
-        specifier: ^5.24.1
-        version: 5.32.1
-      '@tanstack/react-query':
-        specifier: ^5.24.1
-        version: 5.32.1(react@18.1.0)
+        specifier: ^1.0.2
+        version: 1.1.2
       oidc-client:
         specifier: ~1.11.5
         version: 1.11.5
@@ -278,23 +269,17 @@ importers:
         specifier: ~3.0.1
         version: 3.0.1
       react:
-        specifier: 18.1.0
+        specifier: ^18.1.0
         version: 18.1.0
       react-dom:
-        specifier: 18.1.0
+        specifier: ^18.1.0
         version: 18.1.0(react@18.1.0)
       react-oidc-context:
         specifier: ^3.0.0
         version: 3.1.0(oidc-client-ts@3.0.1)(react@18.1.0)
-      react-router:
-        specifier: ^6.22.2
-        version: 6.23.0(react@18.1.0)
       react-router-dom:
         specifier: ^6.22.2
         version: 6.23.0(react-dom@18.1.0(react@18.1.0))(react@18.1.0)
-      uuid:
-        specifier: ^9.0.1
-        version: 9.0.1
     devDependencies:
       '@rollup/plugin-commonjs':
         specifier: ^22.0.2
@@ -311,6 +296,9 @@ importers:
       '@types/node':
         specifier: ^18.17.17
         version: 18.19.31
+      json:
+        specifier: 11.0.0
+        version: 11.0.0
       rollup:
         specifier: ^2.78.0
         version: 2.79.1
@@ -1503,14 +1491,6 @@ packages:
 
   '@sinonjs/fake-timers@9.1.2':
     resolution: {integrity: sha512-BPS4ynJW/o92PUR4wgriz2Ud5gpST5vz6GQfMixEDK0Z8ZCUv2M7SkBLykH56T++Xs+8ln9zTGbOvNGIe02/jw==}
-
-  '@tanstack/query-core@5.32.1':
-    resolution: {integrity: sha512-mCWa1wdGb1jiny4+qYegbSeadcFj+Nq65KFSs4A1DRveoIq7SrTwUhqu7hrB6d54cQH5x59DfJvxusn3w1Cj/g==}
-
-  '@tanstack/react-query@5.32.1':
-    resolution: {integrity: sha512-+nXLMB0JK0XwTJ+lQt49DPNLrbSppni9N5W5yMR085yW3YaRKRUFhfVTER3TvQd1UycHpoGPFnt1gHiijXERAg==}
-    peerDependencies:
-      react: ^18.0.0
 
   '@types/babel__core@7.20.5':
     resolution: {integrity: sha512-qoQprZvz5wQFJwMDqeseRXWv3rqMvhgpbXFfVyWhbx9X47POIA6i/+dXefEmZKoAgOaTdaIgNSMqMIU61yRyzA==}
@@ -3167,6 +3147,11 @@ packages:
     engines: {node: '>=6'}
     hasBin: true
 
+  json@11.0.0:
+    resolution: {integrity: sha512-N/ITv3Yw9Za8cGxuQqSqrq6RHnlaHWZkAFavcfpH/R52522c26EbihMxnY7A1chxfXJ4d+cEFIsyTgfi9GihrA==}
+    engines: {node: '>=0.10.0'}
+    hasBin: true
+
   jsonfile@4.0.0:
     resolution: {integrity: sha512-m6F1R3z8jjlf2imQHS2Qez5sjKWQzbuuhuJ/FKYFRZvPE3PuHcSMVZzfsLhGVOkfd20obL5SWEBew5ShlquNxg==}
 
@@ -4452,10 +4437,6 @@ packages:
 
   uuid@8.3.2:
     resolution: {integrity: sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==}
-    hasBin: true
-
-  uuid@9.0.1:
-    resolution: {integrity: sha512-b+1eJOlsR9K8HJpow9Ok3fiWOWSIcIzXodvv0rQjVoOVNpWMpxf1wZNpt4y9h10odCNrqnYp1OBzRktckBe3sA==}
     hasBin: true
 
   v8-to-istanbul@9.2.0:
@@ -5785,13 +5766,6 @@ snapshots:
   '@sinonjs/fake-timers@9.1.2':
     dependencies:
       '@sinonjs/commons': 1.8.6
-
-  '@tanstack/query-core@5.32.1': {}
-
-  '@tanstack/react-query@5.32.1(react@18.1.0)':
-    dependencies:
-      '@tanstack/query-core': 5.32.1
-      react: 18.1.0
 
   '@types/babel__core@7.20.5':
     dependencies:
@@ -7738,6 +7712,8 @@ snapshots:
 
   json5@2.2.3: {}
 
+  json@11.0.0: {}
+
   jsonfile@4.0.0:
     optionalDependencies:
       graceful-fs: 4.2.11
@@ -9101,8 +9077,6 @@ snapshots:
   utils-merge@1.0.1: {}
 
   uuid@8.3.2: {}
-
-  uuid@9.0.1: {}
 
   v8-to-istanbul@9.2.0:
     dependencies:
