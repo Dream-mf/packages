@@ -36,7 +36,7 @@ export const DreamMFContextGuard = ({
 
   useEffect(() => {
     if (auth.isAuthenticated && auth.user) {
-      registerUserProfile(auth.user);
+      registerUserProfile(auth.user.profile);
     }
   }, [auth.user]);
 
