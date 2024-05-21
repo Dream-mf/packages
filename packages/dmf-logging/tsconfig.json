@@ -7,7 +7,7 @@
 		"sourceMap": true,
 		"outDir": "dist",
 		"strict": false,
-		"moduleResolution": "Bundler",
+		"moduleResolution": "node",
 		"allowSyntheticDefaultImports": true,
 		"esModuleInterop": true,
 		"skipLibCheck": true,

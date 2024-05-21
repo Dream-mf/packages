@@ -24,6 +24,7 @@
 		"react-dom": "^18.1.0"
 	},
 	"devDependencies": {
+		"json": "11.0.0",
 		"@rollup/plugin-commonjs": "^22.0.2",
 		"@rollup/plugin-json": "6.1.0",
 		"@rollup/plugin-node-resolve": "^13.3.0",
