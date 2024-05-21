@@ -34,6 +34,14 @@ export const registerRuntimePlugin = (pluginName: string, config: object) => {
   }
 };
 
+export const registerUserPrifile = (userProfile?: any) => {
+  const propName = "profile";
+  if (!validateRuntimeProperty(propName)) {
+    window[RuntimeName][propName] = null;
+  }
+  window[RuntimeName][propName] = userProfile;
+};
+
 /** Registers a remote scope and module by url with the Dream.mf runtime so it can be discovered */
 export const registerRuntimeRemote = (
   scope: string,
@@ -72,4 +80,5 @@ export default {
   registerRuntimeProperty,
   registerRuntimePlugin,
   registerRuntimeRemote,
+  registerUserPrifile,
 };

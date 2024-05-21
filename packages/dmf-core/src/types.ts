@@ -43,6 +43,7 @@ export interface Metadata {}
 export interface Runtime {
   version: string;
   environment: string;
+  profile?: any;
   logger?: Logger;
   bundler?: Bundler;
   authentication?: Authentication;
