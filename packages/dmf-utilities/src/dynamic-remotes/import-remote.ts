@@ -1,8 +1,8 @@
 import { registerRemotes } from "@module-federation/runtime";
 import { DreamMFLogClient } from "@dream.mf/logging";
 import { registerRuntimeRemote } from "@dream.mf/core";
-import { setupRuntime } from "./core";
-import { LoadRemoteOptions, ImportRemoteOptions } from "./types";
+import { setupRuntime } from "../core";
+import { LoadRemoteOptions, ImportRemoteOptions } from "../types";
 
 /** ==================================================================================== */
 
