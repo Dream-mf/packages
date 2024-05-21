@@ -34,7 +34,8 @@ export const registerRuntimePlugin = (pluginName: string, config: object) => {
   }
 };
 
-export const registerUserPrifile = (userProfile?: any) => {
+/* Registers current user details in runtime for easy lookup */
+export const registerUserProfile = (userProfile?: any) => {
   const propName = "profile";
   if (!validateRuntimeProperty(propName)) {
     window[RuntimeName][propName] = null;
@@ -80,5 +81,5 @@ export default {
   registerRuntimeProperty,
   registerRuntimePlugin,
   registerRuntimeRemote,
-  registerUserPrifile,
+  registerUserProfile,
 };
