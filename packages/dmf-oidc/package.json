@@ -4,6 +4,16 @@
 	"main": "dist/index.js",
 	"module": "dist/index.mjs",
 	"typings": "dist/index.d.ts",
+	"authors": [
+		{
+			"name": "Chris Fryer",
+			"email": "cfryerdev@gmail.com"
+		},
+		{
+			"name": "Russell Canfield",
+			"email": "rcanfield86@gmail.com"
+		}
+	],
 	"license": "MIT",
 	"engines": {
 		"node": ">=16",
