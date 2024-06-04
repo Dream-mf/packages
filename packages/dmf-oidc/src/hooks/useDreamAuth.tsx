@@ -1,10 +1,20 @@
-import { useAuth } from "react-oidc-context";
+import { AuthContextProps, useAuth } from "react-oidc-context";
+
+export interface useDreamAuthApi extends AuthContextProps {
+  /** Handles the logout flow and cleans up stateful keys if you set clearState to true */
+  handleLogout: (onLogout: Function, clearState: boolean) => Promise<void>;
+  /** Clears any oidc user state keys */
+  clearOidcState: () => void;
+  /** Clears local storage from any oidc state keys */
+  clearLocalStorage: () => void;
+  /** Clears session storage from any oidc state keys */
+  clearSessionStorage: () => void;
+}
 
 /** Hook for use with useAuth from react-oidc-context with extensions from Dream. */
-export const useDreamAuth = () => {
+export const useDreamAuth = (): useDreamAuthApi => {
   const auth = useAuth();
 
-  /** Clears local storage from any oidc state keys */
   const clearLocalStorage = () => {
     Object.keys(localStorage).forEach((key) => {
       if (key.startsWith("oidc.")) {
@@ -13,7 +23,6 @@ export const useDreamAuth = () => {
     });
   };
 
-  /** Clears session storage from any oidc state keys */
   const clearSessionStorage = () => {
     Object.keys(sessionStorage).forEach((key) => {
       if (key.startsWith("oidc.")) {
@@ -22,10 +31,16 @@ export const useDreamAuth = () => {
     });
   };
 
-  /** Handles the logout flow and cleans up stateful keys if you set clearState to true */
+  const clearOidcState = () => {
+    const { settings } = auth;
+    localStorage.removeItem(`oidc.user:${settings.authority}:${settings.client_id}`);
+    sessionStorage.removeItem(`oidc.user:${settings.authority}:${settings.client_id}`);
+  };
+
   const handleLogout = async (onLogout: Function, clearState: boolean) => {
     return auth.signoutRedirect().then(() => {
       if (clearState) {
+        clearOidcState();
         clearLocalStorage();
         clearSessionStorage();
       }
@@ -33,12 +48,11 @@ export const useDreamAuth = () => {
     });
   };
 
-  const extensions = {
+  return {
     ...auth,
     handleLogout,
+    clearOidcState,
     clearLocalStorage,
     clearSessionStorage,
-  };
-
-  return extensions;
+  } as useDreamAuthApi;
 };
