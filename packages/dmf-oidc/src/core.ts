@@ -24,10 +24,21 @@ export const setupRuntime = (logConfig: DreamMFAuthConfig) => {
 	if (!validateRuntimeProperty('authentication')) {
 		registerRuntimeProperty('authentication', {
 			provider: `@dream.mf/authentication:${version}`,
-			config: logConfig,
+			config: protectConfig(logConfig),
 		});
 	}
 };
+
+const protectConfig = (logConfig: DreamMFAuthConfig): any => {
+	if (process.env.NODE_ENV === 'production') {
+		return logConfig;
+	}
+	const newObj = {...logConfig};
+	delete newObj.client_secret;
+	delete newObj.response_type;
+	delete newObj.scope;
+	return newObj;
+}
 
 export default {
 	setupRuntime,
