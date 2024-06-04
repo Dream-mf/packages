@@ -37,15 +37,15 @@ export const useDreamAuth = (): useDreamAuthApi => {
     sessionStorage.removeItem(`oidc.user:${settings.authority}:${settings.client_id}`);
   };
 
-  const handleLogout = async (onLogout: Function, clearState: boolean) => {
-    return auth.signoutRedirect().then(() => {
-      if (clearState) {
+  const handleLogout = async (onLogoutCallback: Function, clearState: boolean) => {
+    if (clearState) {
         clearOidcState();
         clearLocalStorage();
         clearSessionStorage();
-      }
-      onLogout();
-    });
+    }
+    await auth.revokeTokens(["access_token","refresh_token"]);
+    await auth.removeUser();
+    return auth.signoutRedirect().then(() => onLogoutCallback());
   };
 
   return {

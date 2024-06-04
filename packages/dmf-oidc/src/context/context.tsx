@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect } from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
 import { AuthProvider } from 'react-oidc-context';
 import core from '../core';
 import { addInterceptors } from '../middleware/fetch';
@@ -17,7 +17,7 @@ export const DreamMFAuthProvider = ({
 	useEffect(() => {
 		core.setupRuntime(config);
 		addInterceptors(config);
-		DreamMFLogClient.logAuthentication({ message: 'DreamMFAuthProvider starting up...' });
+		DreamMFLogClient.logAuthentication({ message: 'AuthProvider starting up...' });
 	}, []);
 
 	return (
