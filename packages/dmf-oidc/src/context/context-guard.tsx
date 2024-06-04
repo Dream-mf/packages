@@ -85,7 +85,7 @@ export const DreamMFContextGuard = ({
   }
 
   const returnRender = () => (auth.isAuthenticated ? children : fallback) as ReactElement;
-  return useMemo(() => returnRender);
+  return useMemo(() => returnRender());
 };
 
 export default { DreamMFContextGuard };
