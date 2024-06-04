@@ -1,4 +1,4 @@
-import React, { ReactElement, ReactNode, useEffect } from "react";
+import React, { ReactElement, ReactNode, useEffect, useMemo } from "react";
 import { SigninSilentArgs } from "oidc-client-ts";
 import { hasAuthParams, useAuth } from "react-oidc-context";
 import DreamMFContextStore from "../extensions/url-store";
@@ -80,24 +80,12 @@ export const DreamMFContextGuard = ({
     });
   }, [auth.events, auth.signinSilent]);
 
-  switch (auth.activeNavigator) {
-    case "signinSilent":
-      return <h3>Signing you in...</h3>;
-    case "signoutRedirect":
-      return <h3>Signing you out...</h3>;
-  }
-
   if (auth.error) {
     DreamMFLogClient.logAuthentication({ error: auth.error });
-    return (
-      <>
-        <h3>Error authenticating</h3>
-        <h5>{auth.error.message}</h5>
-      </>
-    );
   }
 
-  return (auth.isAuthenticated ? children : fallback) as ReactElement;
+  const returnRender = () => (auth.isAuthenticated ? children : fallback) as ReactElement;
+  return useMemo(() => returnRender);
 };
 
 export default { DreamMFContextGuard };
