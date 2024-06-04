@@ -10,7 +10,7 @@ export type DreamMFAuthConfig = UserManagerSettings & {
 	useAxiosInterceptor: boolean;
 };
 
-/** Extension type for fetch options */
+/** Extended interface to include our types for fetches */
 export interface DreamMFRequestInit extends RequestInit {
     useAuthentication?: boolean;
 }
