@@ -46,11 +46,7 @@ export const DreamMFContextGuard = ({
         message: "Redirecting you to the identity provider.",
       });
       DreamMFContextStore.originalRequestPath = `${window.location.pathname}`;
-      auth
-        .signinRedirect({
-          redirect_uri: auth.settings.redirect_uri,
-        } as SigninSilentArgs)
-        .catch(console.error);
+      auth.signinRedirect().catch(console.error);
     }
   }, [auth.isAuthenticated]);
 
@@ -84,7 +80,8 @@ export const DreamMFContextGuard = ({
     DreamMFLogClient.logAuthentication({ error: auth.error });
   }
 
-  const returnRender = () => (auth.isAuthenticated ? children : fallback) as ReactElement;
+  const returnRender = () =>
+    (auth.isAuthenticated ? children : fallback) as ReactElement;
   return useMemo(() => returnRender());
 };
 
