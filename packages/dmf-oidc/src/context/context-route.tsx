@@ -7,9 +7,9 @@ export interface DreamMFAuthRouteProps {
   /** The function you want to use to enable redirection, usually react router's navigate. */
   navigate: (url: string) => void;
   /** Any logic we should execute before redirecting. */
-  onBeforeRedirect?: () => void;
+  onBeforeRedirect?: () => void | undefined;
   /** The message we show while we redirect.  */
-  loginMessage?: string;
+  loginMessage?: string | undefined;
 }
 
 export const DreamMFAuthRoute = ({

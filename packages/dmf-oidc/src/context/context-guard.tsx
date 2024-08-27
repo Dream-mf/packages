@@ -10,7 +10,7 @@ interface DreamMFAuthGuardProps {
   /** The fallback component to render if we are not authenticated and set stopRedirect to true. */
   fallback?: ReactNode | undefined;
   /** Should we stop the redirect and render the fallback if not authenticated. */
-  stopRedirect?: boolean;
+  stopRedirect?: boolean | undefined;
 }
 
 /** A authenticated guard (using DreamMFAuthProvider) to ensure items do not render unless isAuthenticated is true.
