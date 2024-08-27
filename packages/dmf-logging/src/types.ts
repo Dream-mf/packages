@@ -38,6 +38,7 @@ export type LogException = {
 
 export type LogEvent = {
   eventName: string;
+  details?: string | Object;
 } & LogCommon;
 
 export type LogPageView = {
