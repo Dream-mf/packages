@@ -22,8 +22,8 @@ export const DreamMFAuthProvider = ({
   useEffect(() => {
     core.setupRuntime(config);
     addInterceptors(config);
-    DreamMFLogClient.logAuthentication({
-      message: "AuthProvider starting up...",
+    DreamMFLogClient.logInfo({
+      message: "Authentication: Setting up configuration...",
     });
   }, []);
 

@@ -24,8 +24,8 @@ export const DreamMFAuthRoute = ({
 
   useEffect(() => {
     if (auth.isAuthenticated) {
-      DreamMFLogClient.logAuthentication({
-        message: "Successful login, redirecting you back.",
+      DreamMFLogClient.logInfo({
+        message: "Authentication: Successful login, redirecting you back.",
       });
       const url = DreamMFContextStore.originalRequestPath;
       DreamMFContextStore.clear();
@@ -38,7 +38,7 @@ export const DreamMFAuthRoute = ({
   /** --------------------------------------------------- */
 
   return (
-    <>{loginMessage ? loginMessage : "One minute, we are logging you in.."}</>
+    <>{loginMessage ? loginMessage : "One minute, we are logging you in..."}</>
   );
 };
 

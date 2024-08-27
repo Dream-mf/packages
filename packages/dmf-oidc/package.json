@@ -1,6 +1,6 @@
 {
   "name": "@dream.mf/oidc",
-  "version": "0.99.1",
+  "version": "0.99.3",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "typings": "dist/index.d.ts",
@@ -13,6 +13,7 @@
   "license": "MIT",
   "engines": {
     "node": ">=16",
+    "pnpm": ">=9",
     "npm": ">=8"
   },
   "scripts": {
@@ -23,7 +24,7 @@
   },
   "dependencies": {
     "@dream.mf/core": "^1.2.7",
-    "@dream.mf/logging": "^1.0.2",
+    "@dream.mf/logging": "1.4.1",
     "oidc-client": "~1.11.5",
     "oidc-client-ts": "~3.0.1",
     "react-oidc-context": "^3.0.0"

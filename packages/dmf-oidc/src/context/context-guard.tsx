@@ -29,16 +29,18 @@ export const DreamMFAuthGuard = ({
   useEffect(() => {
     if (auth.isAuthenticated && auth.user) {
       registerUserProfile(auth.user.profile);
+    } else {
+      registerUserProfile({});
     }
-  }, [auth.user]);
+  }, [auth.isAuthenticated, auth.user]);
 
   /** Handle redirection for authentication logic */
   /** --------------------------------------------------- */
 
   useEffect(() => {
     if (!auth.isAuthenticated && !stopRedirect) {
-      DreamMFLogClient.logAuthentication({
-        message: "Redirecting you to the identity provider.",
+      DreamMFLogClient.logInfo({
+        message: "Authentication: Redirecting you to the identity provider.",
       });
       DreamMFContextStore.originalRequestPath = `${window.location.pathname}`;
       auth.signinRedirect().catch(console.error);
@@ -50,8 +52,8 @@ export const DreamMFAuthGuard = ({
 
   const handleTokenExpiring = () => {
     auth.events.addAccessTokenExpiring((cb) => {
-      DreamMFLogClient.logAuthentication({
-        message: "Renewing token with the identity provider.",
+      DreamMFLogClient.logInfo({
+        message: "Authentication: Renewing token with the identity provider.",
       });
       auth
         .signinSilent({
@@ -72,16 +74,22 @@ export const DreamMFAuthGuard = ({
   /** --------------------------------------------------- */
 
   if (auth.error) {
-    DreamMFLogClient.logAuthentication({ error: auth.error });
+    DreamMFLogClient.logException({
+      type: "Authentication",
+      error: auth.error,
+    });
     return <>{auth.error}</>;
   }
 
-  /** Handle rendering based on auth and fallbacks */
+  /** Handle rendering based on auth and fallbacks, ensuring
+        it does not re-render when token silently refreshes */
   /** --------------------------------------------------- */
 
-  const returnRender = () =>
-    (auth.isAuthenticated ? children : fallback) as ReactElement;
-  return useMemo(() => returnRender(), [auth.isAuthenticated]);
+  const content = useMemo(() => {
+    return auth.isAuthenticated ? children : fallback;
+  }, [auth.isAuthenticated]);
+
+  return content;
 };
 
 export default DreamMFAuthGuard;

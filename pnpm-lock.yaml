@@ -281,8 +281,8 @@ importers:
         specifier: ^1.2.7
         version: 1.2.7
       '@dream.mf/logging':
-        specifier: ^1.0.2
-        version: 1.1.2
+        specifier: 1.4.1
+        version: 1.4.1(react-dom@18.1.0(react@18.1.0))(react@18.1.0)
       oidc-client:
         specifier: ~1.11.5
         version: 1.11.5
@@ -907,6 +907,13 @@ packages:
   '@dream.mf/logging@1.1.2':
     resolution: {integrity: sha512-dP5SMo4wtYOoNDf6xabkVA16GFUzvcdQLtC135f6iAU84YKzQ+hOEnEIEhZyQiVHM5YBz19ewrV1ZrBqUB+grQ==}
     engines: {node: '>=16', npm: '>=8'}
+
+  '@dream.mf/logging@1.4.1':
+    resolution: {integrity: sha512-u6e1D8rxL/S7wwzWP6ZYhySberLpdFmwaqqf/ln71qPifFw2Oof8RTD1hbQHAdDp1kIxd0U7kKPFyRCkqCjWCg==}
+    engines: {node: '>=16', npm: '>=8', pnpm: '>=9'}
+    peerDependencies:
+      react: ^18.1.0
+      react-dom: ^18.1.0
 
   '@esbuild/aix-ppc64@0.19.12':
     resolution: {integrity: sha512-bmoCYyWdEL3wDQIVbcyzRyeKLgk2WtWLTWz1ZIAZF/EGbNOwSA6ew3PftJ1PqMiOOGu0OyFMzG53L0zqIpPeNA==}
@@ -5607,6 +5614,12 @@ snapshots:
   '@dream.mf/logging@1.1.2':
     dependencies:
       '@dream.mf/core': 1.1.2
+      react: 18.1.0
+      react-dom: 18.1.0(react@18.1.0)
+
+  '@dream.mf/logging@1.4.1(react-dom@18.1.0(react@18.1.0))(react@18.1.0)':
+    dependencies:
+      '@dream.mf/core': 1.2.2
       react: 18.1.0
       react-dom: 18.1.0(react@18.1.0)
 
