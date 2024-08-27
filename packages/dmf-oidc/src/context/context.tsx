@@ -16,6 +16,9 @@ export const DreamMFAuthProvider = ({
   automaticSilentRenew,
   config,
 }: DreamMFAuthProviderProps) => {
+  /** Handle any setup for the dream runtime, logger, and interceptors */
+  /** --------------------------------------------------- */
+
   useEffect(() => {
     core.setupRuntime(config);
     addInterceptors(config);
@@ -23,6 +26,9 @@ export const DreamMFAuthProvider = ({
       message: "AuthProvider starting up...",
     });
   }, []);
+
+  /** Wrap oidc-context and apply patterns */
+  /** --------------------------------------------------- */
 
   return (
     <AuthProvider
@@ -36,4 +42,4 @@ export const DreamMFAuthProvider = ({
   );
 };
 
-export default { DreamMFAuthProvider };
+export default DreamMFAuthProvider;

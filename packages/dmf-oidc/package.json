@@ -1,6 +1,6 @@
 {
   "name": "@dream.mf/oidc",
-  "version": "0.12.2",
+  "version": "0.99.0",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "typings": "dist/index.d.ts",
@@ -8,10 +8,6 @@
     {
       "name": "Chris Fryer",
       "email": "cfryerdev@gmail.com"
-    },
-    {
-      "name": "Russell Canfield",
-      "email": "rcanfield86@gmail.com"
     }
   ],
   "license": "MIT",

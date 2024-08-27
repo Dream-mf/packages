@@ -1,15 +1,26 @@
 import React, { useEffect } from "react";
 import { useAuth } from "react-oidc-context";
 import DreamMFContextStore from "../extensions/url-store";
-import { DreamMFContextGuard } from "./context-guard";
 import { DreamMFLogClient } from "@dream.mf/logging";
 
-export interface HandleAuthRouteProps {
-  navigation: Function;
+export interface DreamMFAuthRouteProps {
+  /** The function you want to use to enable redirection, usually react router's navigate. */
+  navigate: (url: string) => void;
+  /** Any logic we should execute before redirecting. */
+  onBeforeRedirect?: () => void;
+  /** The message we show while we redirect.  */
+  loginMessage?: string;
 }
 
-export const HandleAuthRoute = ({ navigate }) => {
+export const DreamMFAuthRoute = ({
+  navigate,
+  onBeforeRedirect,
+  loginMessage,
+}) => {
   const auth = useAuth();
+
+  /** Handle any cleanup or before redirect logic before redirecting */
+  /** --------------------------------------------------- */
 
   useEffect(() => {
     if (auth.isAuthenticated) {
@@ -18,20 +29,17 @@ export const HandleAuthRoute = ({ navigate }) => {
       });
       const url = DreamMFContextStore.originalRequestPath;
       DreamMFContextStore.clear();
-      navigate(url);
+      onBeforeRedirect && onBeforeRedirect();
+      navigate && navigate(url);
     }
   }, [auth.isAuthenticated]);
 
+  /** Handle rendering based on login message */
+  /** --------------------------------------------------- */
+
   return (
-    <>
-      <DreamMFContextGuard
-        fallback={<>You do not have access to this component.</>}
-      />
-      <>One minute, we are logging you in...</>
-    </>
+    <>{loginMessage ? loginMessage : "One minute, we are logging you in.."}</>
   );
 };
 
-export default {
-  HandleAuthRoute,
-};
+export default DreamMFAuthRoute;
