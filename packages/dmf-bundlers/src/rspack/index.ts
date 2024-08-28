@@ -15,7 +15,7 @@ import rules from "../common/rules";
  * @param {Object} customConfig Config overrides to pass to the WebPackConfig and ModuleFederationPlugin.
  * @param {boolean} [isTypescript] Whether or not this module uses Typescript.
  */
-export const withBaseRSPack = (customConfig: any, isTypescript: boolean) => {
+export const withBaseRspack = (customConfig: any, isTypescript: boolean) => {
   loaders._envLoader();
   const prod = process.env.NODE_ENV === "production";
   return defineConfig({
@@ -112,5 +112,5 @@ export const withBaseRSPack = (customConfig: any, isTypescript: boolean) => {
 };
 
 export default {
-  withBaseRSPack,
+  withBaseRspack,
 };

@@ -1,5 +1,5 @@
 import { withBaseWebpack } from "./webpack";
-import { withBaseRSPack } from "./rspack";
+import { withBaseRspack } from "./rspack";
 import { DefaultRemoteName, DefaultContainerName } from "./common/types";
 
 // export * from "./webpack";
@@ -8,7 +8,7 @@ import { DefaultRemoteName, DefaultContainerName } from "./common/types";
 
 export {
   withBaseWebpack,
-  withBaseRSPack,
+  withBaseRspack,
   DefaultRemoteName,
   DefaultContainerName,
 };
