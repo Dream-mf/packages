@@ -78,7 +78,6 @@ export const DreamMFAuthGuard = ({
       type: "Authentication",
       error: auth.error,
     });
-    return <>{auth.error}</>;
   }
 
   /** Handle rendering based on auth and fallbacks, ensuring
