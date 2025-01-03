@@ -1,6 +1,6 @@
 {
   "name": "@dream.mf/bundlers",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "typings": "dist/index.d.ts",

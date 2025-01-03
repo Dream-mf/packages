@@ -72,11 +72,11 @@ importers:
         specifier: ^8.5.1
         version: 8.5.1(postcss@8.4.38)
       react:
-        specifier: 18.1.0
-        version: 18.1.0
+        specifier: 19.0.0
+        version: 19.0.0
       react-dom:
-        specifier: 18.1.0
-        version: 18.1.0(react@18.1.0)
+        specifier: 19.0.0
+        version: 19.0.0(react@19.0.0)
       sass:
         specifier: ^1.67.0
         version: 1.76.0
@@ -4253,6 +4253,10 @@ packages:
 
   react@18.1.0:
     resolution: {integrity: sha512-4oL8ivCz5ZEPyclFQXaNksK3adutVS8l2xzZU0cqEFrE9Sb7fC0EFK5uEk74wIreL1DERyjvsU915j1pcT2uEQ==}
+    engines: {node: '>=0.10.0'}
+
+  react@19.0.0:
+    resolution: {integrity: sha512-V8AVnmPIICiWpGfm6GLzCR/W5FXLchHop40W4nXBmdlEceh16rCN8O8LNWm5bh5XUX91fh7KpA+W0TgMKmgTpQ==}
     engines: {node: '>=0.10.0'}
 
   readable-stream@2.3.8:
@@ -9365,6 +9369,11 @@ snapshots:
       react: 18.1.0
       scheduler: 0.25.0
 
+  react-dom@19.0.0(react@19.0.0):
+    dependencies:
+      react: 19.0.0
+      scheduler: 0.25.0
+
   react-is@18.3.1: {}
 
   react-oidc-context@3.1.0(oidc-client-ts@3.0.1)(react@18.1.0):
@@ -9393,6 +9402,8 @@ snapshots:
   react@18.1.0:
     dependencies:
       loose-envify: 1.4.0
+
+  react@19.0.0: {}
 
   readable-stream@2.3.8:
     dependencies:
