@@ -21,7 +21,7 @@ export const _defaultSharedModules = () => {
     "react-router-dom": {
       singleton: true,
       strictVersion: true,
-      requiredVersion: "6.22",
+      requiredVersion: "7.1.1",
     },
     "react-oidc-context": {
       singleton: true,
