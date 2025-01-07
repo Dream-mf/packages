@@ -1,20 +1,27 @@
 {
+	"extends": "../../tsconfig.base.json",
 	"compilerOptions": {
-	  "target": "es5",
-	  "lib": ["es5", "es6", "es2018", "dom"],
-	  "jsx": "react",
-	  "module": "esnext",
-	  "sourceMap": true,
-	  "outDir": "dist",
-	  "strict": false,
-	  "moduleResolution": "node",
-	  "allowSyntheticDefaultImports": true,
-	  "esModuleInterop": true,
-	  "skipLibCheck": true,
-	  "forceConsistentCasingInFileNames": true,
-	  "declaration": true,
-	  "declarationDir": "types",
-	  "emitDeclarationOnly": true,
-	  "resolveJsonModule": true
-	}
-  }
+		"jsx": "react-jsx",
+		"sourceMap": true,
+		"outDir": "dist",
+		"strict": false,
+		"allowSyntheticDefaultImports": true,
+		"esModuleInterop": true,
+		"skipLibCheck": true,
+		"forceConsistentCasingInFileNames": true,
+		"declaration": true,
+		"declarationDir": "types",
+		"emitDeclarationOnly": true,
+		"resolveJsonModule": true
+	},
+	"references": [
+		{
+			"path": "./tsconfig.lib.json"
+		},
+		{
+			"path": "./tsconfig.spec.json"
+		}
+	],
+	"include": [],
+	"files": []
+}

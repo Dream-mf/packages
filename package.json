@@ -1,0 +1,27 @@
+{
+  "name": "@dream.mf/packages",
+  "version": "0.4.0",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18",
+    "pnpm": ">=9"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "4.3.4",
+    "vite": "5.4.11",
+    "vite-plugin-dts": "4.4.0",
+    "vite-plugin-node-polyfills": "0.22.0",
+    "@module-federation/runtime": "^0.8.8"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.8.3",
+    "@gitopslovers/nx-biome": "^1.5.0",
+    "@nx/devkit": "20.3.0",
+    "@nx/vite": "20.3.0",
+    "@types/node": "^18.17.17",
+    "nx": "20.3.0",
+    "tslib": "2.8.1",
+    "typescript": "5.7.2"
+  },
+  "packageManager": "pnpm@9.0.0"
+}

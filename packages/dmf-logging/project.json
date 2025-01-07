@@ -1,0 +1,64 @@
+{
+  "name": "dmf-logging",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/dmf-logging/src",
+  "projectType": "library",
+  "tags": [
+    "scope:logging",
+    "type:library"
+  ],
+  "targets": {
+    "build": {
+      "executor": "@nx/vite:build",
+      "options": {
+        "outputPath": "dist/packages/dmf-logging",
+        "assets": [
+          {
+            "glob": "package.json",
+            "input": "packages/dmf-logging",
+            "output": "."
+          },
+          {
+            "glob": "README.md",
+            "input": "packages/dmf-logging",
+            "output": "."
+          },
+          {
+            "glob": "LICENSE",
+            "input": "packages/dmf-logging",
+            "output": "."
+          }
+        ]
+      }
+    },
+    "serve": {
+      "executor": "@nx/vite:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "dmf-logging:build"
+      }
+    },
+    "test": {
+      "executor": "@nx/vite:test",
+      "outputs": [
+        "{options.reportsDirectory}"
+      ],
+      "options": {
+        "reportsDirectory": "../../coverage/packages/dmf-logging"
+      }
+    },
+    "biome-lint": {
+      "executor": "@gitopslovers/nx-biome:biome-lint",
+      "outputs": [
+        "{options.outputFile}"
+      ],
+      "options": {
+        "lintFilePatterns": [
+          "packages/dmf-logging/**/*.ts"
+        ],
+        "write": false,
+        "unsafe": false
+      }
+    }
+  }
+}

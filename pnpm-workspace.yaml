@@ -1,8 +1,2 @@
 packages:
-  - packages/dmf-core
-  - packages/dmf-logging
-  - packages/dmf-react
-  - packages/dmf-oidc
-  - packages/dmf-bundlers
-  - packages/dmf-testing
-  - packages/dmf-utilities
+  - packages/*

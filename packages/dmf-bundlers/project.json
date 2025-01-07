@@ -1,0 +1,64 @@
+{
+  "name": "dmf-bundlers",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/dmf-bundlers/src",
+  "projectType": "library",
+  "tags": [
+    "scope:bundlers",
+    "type:library"
+  ],
+  "targets": {
+    "build": {
+      "executor": "@nx/vite:build",
+      "options": {
+        "outputPath": "dist/packages/dmf-bundlers",
+        "assets": [
+          {
+            "glob": "package.json",
+            "input": "packages/dmf-bundlers",
+            "output": "."
+          },
+          {
+            "glob": "README.md",
+            "input": "packages/dmf-bundlers",
+            "output": "."
+          },
+          {
+            "glob": "LICENSE",
+            "input": "packages/dmf-bundlers",
+            "output": "."
+          }
+        ]
+      }
+    },
+    "serve": {
+      "executor": "@nx/vite:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "dmf-bundlers:build"
+      }
+    },
+    "test": {
+      "executor": "@nx/vite:test",
+      "outputs": [
+        "{options.reportsDirectory}"
+      ],
+      "options": {
+        "reportsDirectory": "../../coverage/packages/dmf-bundlers"
+      }
+    },
+    "biome-lint": {
+      "executor": "@gitopslovers/nx-biome:biome-lint",
+      "outputs": [
+        "{options.outputFile}"
+      ],
+      "options": {
+        "lintFilePatterns": [
+          "packages/dmf-bundlers/**/*.ts"
+        ],
+        "write": false,
+        "unsafe": false
+      }
+    }
+  }
+}
