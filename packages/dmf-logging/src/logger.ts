@@ -1,20 +1,24 @@
 import {
-	LogCommon,
-	LogEvent,
-	LogException,
-	LogInfo,
-	LogPageView,
+	type LogCommon,
+	type LogEvent,
+	type LogException,
+	type LogInfo,
+	type LogPageView,
 	LogType,
 } from "./types";
 
 /** Massage the details object s its a better fit for log event messages */
 const _extendDetail = <T extends LogCommon>(detail: T): T => {
 	detail.properties
-		? (detail.properties.location = window.location.href)
-		: (detail.properties = { location: window.location.href });
+		? // biome-ignore lint/suspicious/noAssignInExpressions: <explanation>
+			(detail.properties.location = window.location.href)
+		: // biome-ignore lint/suspicious/noAssignInExpressions: <explanation>
+			(detail.properties = { location: window.location.href });
 	if (detail.properties) {
+		// biome-ignore lint/complexity/noForEach: <explanation>
 		Object.keys(detail.properties).forEach((key) => {
-			if (typeof detail.properties[key] == "number") {
+			if (typeof detail.properties[key] === "number") {
+				//@ts-expect-error
 				detail.properties[key] = detail.properties[key].toString();
 			}
 		});
