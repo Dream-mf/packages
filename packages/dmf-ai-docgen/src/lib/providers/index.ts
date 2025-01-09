@@ -1,10 +1,10 @@
-import { type AIFactoryConfig, AIProviders } from "../types";
+import type { AIFactoryConfig } from "../types";
 import { AnthropicProvider } from "./anthropic";
 import { OpenAIProvider } from "./openai";
 
 const createAIProvider = (config: AIFactoryConfig) => {
   switch (config.provider) {
-    case AIProviders.ANTHROPIC:
+    case "anthropic":
       return new AnthropicProvider(config);
     default:
       return new OpenAIProvider(config);

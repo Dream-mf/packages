@@ -35,7 +35,7 @@ aiDocgenPlugin({
     aiConfig: {
     provider: AIProviders.OPENAI,
     apiKey: process.env.OPENAI_API_KEY, //Or provide it explicitly
-    model: 'gpt-4o-mini', // Optional, defaults to gpt-4o-mini
+    model: 'gpt-4o', // Optional, defaults to gpt-4o
     temperature: 0.4 // Optional, defaults to 0.4
     }
 })

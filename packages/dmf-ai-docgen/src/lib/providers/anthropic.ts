@@ -1,7 +1,13 @@
 import { ChatAnthropic } from "@langchain/anthropic";
 import { logWarning } from "../logger";
-import type { AIFactoryConfig, AIProvider, FileSummary } from "../types";
-import { extractMarkdownBlock } from "./utils";
+import type {
+  AIFactoryConfig,
+  AIProvider,
+  ExposedModule,
+  FileSummary,
+  ModuleFederationConfig,
+} from "../types";
+import { removeOuterMarkdownBlock } from "./utils";
 
 const defaultModel = "claude-3-5-haiku-latest";
 
@@ -39,8 +45,9 @@ Please provide:
 3. Important dependencies and imports
 4. Any notable patterns or architectural decisions
 5. Write the summary as a detailed walkthrough for someone not familiar with the file
+6. Mention the module scope provided in the overview, as that is
 
-Format the response in markdown.
+Format the response using github flavored markdown.
 
 File:
 ${fileName}
@@ -52,39 +59,71 @@ ${fileContent}`;
 
     return {
       fileName,
-      summary: extractMarkdownBlock(result.content.toString()),
+      summary: removeOuterMarkdownBlock(result.content.toString()),
     };
   }
 
   /**
    * Generates a technical guide based on provided content
    */
-  public async generateGuide(summaries: FileSummary[]): Promise<string> {
-    const prompt = `Please create a technical guide based on the following files:
+  public async generateGuide(
+    files: ExposedModule[],
+    moduleScope: ModuleFederationConfig["name"],
+    sharedConfig?: ModuleFederationConfig["shared"],
+  ): Promise<string> {
+    const prompt = `Please create a comprehensive integration guide for consuming these remote modules:
 
-Please include:
-1. Overview and purpose - the overview should be in the context of the business purpose of all the files provided.
-2. Step-by-step implementation details
-3. Best practices and recommendations
-4. Common pitfalls to avoid
-5. Integration steps or examples for each file
+Please structure the guide as follows:
+1. Overview
+    - Brief explanation of what these remote modules provide
+    - The business value and use cases they solve
+    - Prerequisites and requirements
 
-Format the response in markdown.
+2. Getting Started
+    - Only focus on configuring module federation, not any of the file dependencies explicitly
+    - Module Federation configuration examples
+    - Explain how to setup the shared module configuration to be compatible
 
-Files:
+3. Integration Steps
+    - Step-by-step instructions for importing and using each remote module
+    - Incorporate the "Module Scope" and "Remote Module Name" in your guide, as they are used for import statements
+    - Code examples showing proper usage
+    - Configuration options and customization
+    - TypeScript type definitions and interfaces
 
-${summaries
+4. Best Practices
+    - Recommended patterns for consuming these remote modules
+    - Performance considerations
+    - Error handling and fallback strategies
+    - Testing recommendations
+
+5. Common Scenarios
+    - Real-world integration examples
+    - Typical use cases with code samples
+    - Troubleshooting tips
+    - Known limitations or considerations
+
+Format the response using github flavored markdown, focusing on practical implementation details.
+
+Module Scope:
+${moduleScope}
+
+Module Shared Configuration:
+${JSON.stringify(sharedConfig ?? "None provided.")}
+
+Remote Modules:
+${files
   .map(
-    (s) =>
-      `File:
-${s.fileName}
+    (f) =>
+      `Name:
+${f.name}
 
-File Summary:
-${s.summary}`,
+File Contents:
+${f.fileContent}`,
   )
-  .join("\n")}`;
+  .join("\n\n----SEPARATOR----\n\n")}`;
 
     const result = await this.model.invoke(prompt);
-    return extractMarkdownBlock(result.content.toString());
+    return removeOuterMarkdownBlock(result.content.toString());
   }
 }

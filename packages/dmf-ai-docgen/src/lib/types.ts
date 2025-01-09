@@ -6,21 +6,27 @@ export type FileSummary = {
   name: string;
 };
 
+export type ExposedModule = {
+  name: string;
+  fileContent: string;
+};
+
 export interface AIProvider {
   generateSummaryForFile: (
     fileName: string,
     fileContents: string,
   ) => Promise<Pick<FileSummary, "fileName" | "summary">>;
-  generateGuide: (summaries: FileSummary[]) => Promise<string>;
+  generateGuide: (
+    files: ExposedModule[],
+    moduleScope: ModuleFederationConfig["name"],
+    sharedConfig?: ModuleFederationConfig["shared"],
+  ) => Promise<string>;
 }
 
 /**
  * Supported AI providers for the factory
  */
-export enum AIProviders {
-  OPENAI = "openai",
-  ANTHROPIC = "anthropic",
-}
+export type AIProviders = "openai" | "anthropic";
 
 /**
  * Configuration interface for the AI Factory

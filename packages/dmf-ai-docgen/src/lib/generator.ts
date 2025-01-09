@@ -57,7 +57,14 @@ export const generateContent = async (
     throw new Error("No file summaries were generated.");
   }
 
-  const guide = await aiProvider.generateGuide(fileSummaries);
+  const guide = await aiProvider.generateGuide(
+    exposedFiles.map((f) => ({
+      name: f.name,
+      fileContent: f.contents,
+    })),
+    String(moduleFedConfig.name),
+    moduleFedConfig.shared,
+  );
 
   return { guide, fileSummaries };
 };

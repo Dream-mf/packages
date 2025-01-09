@@ -1,10 +1,15 @@
-export function extractMarkdownBlock(text: string) {
-  const regex = /```.*?\n([\s\S]*?)\n```/g;
-  const matches = [];
-  let match: RegExpExecArray | null;
-  // biome-ignore lint/suspicious/noAssignInExpressions: <explanation>
-  while ((match = regex.exec(text)) !== null) {
-    matches.push(match[1]);
+/**
+ * Removes only the outermost markdown code block if present
+ * Preserves any nested markdown blocks
+ */
+export function removeOuterMarkdownBlock(text: string): string {
+  // Check if the text starts and ends with markdown blocks
+  const startsWithBlock = text.trimStart().startsWith("```markdown");
+  const endsWithBlock = text.trimEnd().endsWith("```");
+
+  if (startsWithBlock && endsWithBlock) {
+    return text.substring(12, text.length - 3);
   }
-  return matches.length > 0 ? matches.join("\n") : text;
+
+  return text;
 }

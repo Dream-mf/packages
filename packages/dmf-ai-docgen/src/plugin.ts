@@ -20,7 +20,7 @@ export const unpluginFactory: UnpluginFactory<PluginOptions> = (options) => ({
     let cwd = process.cwd();
     let outputDir = process.cwd();
     if (context?.framework === "rspack") {
-      const { compiler, compilation } = context;
+      const { compiler } = context;
       cwd = compiler.options.context || process.cwd();
       outputDir = compiler.options.output.path || process.cwd();
     }
