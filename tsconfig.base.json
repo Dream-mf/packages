@@ -1,27 +1,30 @@
 {
-	"compileOnSave": false,
-	"compilerOptions": {
-		"rootDir": ".",
-		"sourceMap": true,
-		"declaration": false,
-		"moduleResolution": "bundler",
-		"emitDecoratorMetadata": true,
-		"experimentalDecorators": true,
-		"importHelpers": true,
-		"target": "ES2017",
-		"module": "esnext",
-		"lib": ["es2020", "dom"],
-		"skipLibCheck": true,
-		"skipDefaultLibCheck": true,
-		"baseUrl": ".",
-		"paths": {
-			"@dream.mf/bundlers": ["packages/dmf-bundlers/src/index.ts"],
-			"@dream.mf/core": ["packages/dmf-core/src/index.ts"],
-			"@dream.mf/logging": ["packages/dmf-logging/src/index.ts"],
-			"@dream.mf/oidc": ["packages/dmf-oidc/src/index.ts"],
-			"@dream.mf/react": ["packages/dmf-react/src/index.ts"],
-			"@dream.mf/utilities": ["packages/dmf-utilities/src/index.ts"]
-		}
-	},
-	"exclude": ["node_modules", "tmp"]
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "bundler",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "ES2017",
+    "module": "esnext",
+    "lib": ["es2020", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@dream.mf/bundlers": ["packages/dmf-bundlers/src/index.ts"],
+      "@dream.mf/core": ["packages/dmf-core/src/index.ts"],
+      "@dream.mf/dmf-remote-docgen": [
+        "packages/dmf-remote-docgen/src/index.ts"
+      ],
+      "@dream.mf/logging": ["packages/dmf-logging/src/index.ts"],
+      "@dream.mf/oidc": ["packages/dmf-oidc/src/index.ts"],
+      "@dream.mf/react": ["packages/dmf-react/src/index.ts"],
+      "@dream.mf/utilities": ["packages/dmf-utilities/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
 }

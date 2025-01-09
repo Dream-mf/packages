@@ -1,0 +1,45 @@
+{
+  "name": "dmf-ai-docgen",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/dmf-ai-docgen/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/vite:build",
+      "options": {
+        "outputPath": "packages/dmf-ai-docgen/dist",
+        "assets": [
+          {
+            "glob": "package.json",
+            "input": "packages/dmf-ai-docgen",
+            "output": "."
+          },
+          {
+            "glob": "README.md",
+            "input": "packages/dmf-ai-docgen",
+            "output": "."
+          },
+          {
+            "glob": "LICENSE",
+            "input": "packages/dmf-ai-docgen",
+            "output": "."
+          }
+        ]
+      }
+    },
+    "biome-lint": {
+      "executor": "@gitopslovers/nx-biome:biome-lint",
+      "outputs": [
+        "{options.outputFile}"
+      ],
+      "options": {
+        "lintFilePatterns": [
+          "packages/dmf-ai-docgen/**/*.ts"
+        ],
+        "write": false,
+        "unsafe": false
+      }
+    }
+  }
+}
