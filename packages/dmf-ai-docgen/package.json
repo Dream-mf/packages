@@ -3,10 +3,7 @@
   "version": "0.0.1",
   "main": "./index.js",
   "types": "./index.d.ts",
-  "files": [
-    "dist",
-    "README.md"
-  ],
+  "files": ["dist", "README.md"],
   "exports": {
     ".": {
       "import": "./dist/index.mjs",
