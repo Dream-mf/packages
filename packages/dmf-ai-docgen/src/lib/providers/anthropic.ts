@@ -9,29 +9,29 @@ const defaultModel = "claude-3-5-haiku-latest";
  * Anthropic Provider implementation
  */
 export class AnthropicProvider implements AIProvider {
-	private model: ChatAnthropic;
+  private model: ChatAnthropic;
 
-	constructor(config: AIFactoryConfig) {
-		if (!config.model) {
-			logWarning("No Anthropic model specified, default to:", defaultModel);
-		}
+  constructor(config: AIFactoryConfig) {
+    if (!config.model) {
+      logWarning("No Anthropic model specified, default to:", defaultModel);
+    }
 
-		this.model = new ChatAnthropic({
-			apiKey: config.apiKey ?? process.env.ANTHROPIC_API_KEY,
-			anthropicApiKey: config.apiKey ?? process.env.ANTHROPIC_API_KEY,
-			modelName: config.model || defaultModel,
-			temperature: config.temperature || 0.4,
-		});
-	}
+    this.model = new ChatAnthropic({
+      apiKey: config.apiKey ?? process.env.ANTHROPIC_API_KEY,
+      anthropicApiKey: config.apiKey ?? process.env.ANTHROPIC_API_KEY,
+      modelName: config.model || defaultModel,
+      temperature: config.temperature || 0.4,
+    });
+  }
 
-	/**
-	 * Generates a summary for a given file content
-	 */
-	public async generateSummaryForFile(
-		fileContent: string,
-		fileName: string,
-	): Promise<Pick<FileSummary, "fileName" | "summary">> {
-		const prompt = `Please analyze and summarize the following file:
+  /**
+   * Generates a summary for a given file content
+   */
+  public async generateSummaryForFile(
+    fileContent: string,
+    fileName: string,
+  ): Promise<Pick<FileSummary, "fileName" | "summary">> {
+    const prompt = `Please analyze and summarize the following file:
 
 Please provide:
 1. A brief overview of the file's purpose
@@ -48,19 +48,19 @@ ${fileName}
 File Contents:
 ${fileContent}`;
 
-		const result = await this.model.invoke(prompt);
+    const result = await this.model.invoke(prompt);
 
-		return {
-			fileName,
-			summary: extractMarkdownBlock(result.content.toString()),
-		};
-	}
+    return {
+      fileName,
+      summary: extractMarkdownBlock(result.content.toString()),
+    };
+  }
 
-	/**
-	 * Generates a technical guide based on provided content
-	 */
-	public async generateGuide(summaries: FileSummary[]): Promise<string> {
-		const prompt = `Please create a technical guide based on the following files:
+  /**
+   * Generates a technical guide based on provided content
+   */
+  public async generateGuide(summaries: FileSummary[]): Promise<string> {
+    const prompt = `Please create a technical guide based on the following files:
 
 Please include:
 1. Overview and purpose - the overview should be in the context of the business purpose of all the files provided.
@@ -74,17 +74,17 @@ Format the response in markdown.
 Files:
 
 ${summaries
-	.map(
-		(s) =>
-			`File:
+  .map(
+    (s) =>
+      `File:
 ${s.fileName}
 
 File Summary:
 ${s.summary}`,
-	)
-	.join("\n")}`;
+  )
+  .join("\n")}`;
 
-		const result = await this.model.invoke(prompt);
-		return extractMarkdownBlock(result.content.toString());
-	}
+    const result = await this.model.invoke(prompt);
+    return extractMarkdownBlock(result.content.toString());
+  }
 }

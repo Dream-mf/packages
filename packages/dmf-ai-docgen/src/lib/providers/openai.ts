@@ -9,29 +9,29 @@ const defaultModel = "gpt-4o-mini";
  * OpenAI Provider implementation
  */
 export class OpenAIProvider implements AIProvider {
-	private model: ChatOpenAI;
+  private model: ChatOpenAI;
 
-	constructor(config: AIFactoryConfig) {
-		if (!config.model) {
-			logInfo("No OpenAI model specified, default to:", defaultModel);
-		}
+  constructor(config: AIFactoryConfig) {
+    if (!config.model) {
+      logInfo("No OpenAI model specified, default to:", defaultModel);
+    }
 
-		this.model = new ChatOpenAI({
-			apiKey: config.apiKey,
-			openAIApiKey: config.apiKey,
-			modelName: config.model || defaultModel,
-			temperature: config.temperature || 0.4,
-		});
-	}
+    this.model = new ChatOpenAI({
+      apiKey: config.apiKey,
+      openAIApiKey: config.apiKey,
+      modelName: config.model || defaultModel,
+      temperature: config.temperature || 0.4,
+    });
+  }
 
-	/**
-	 * Generates a summary for a given file content
-	 */
-	public async generateSummaryForFile(
-		fileName: string,
-		fileContent: string,
-	): Promise<Pick<FileSummary, "fileName" | "summary">> {
-		const prompt = `Please analyze and summarize the following file:
+  /**
+   * Generates a summary for a given file content
+   */
+  public async generateSummaryForFile(
+    fileName: string,
+    fileContent: string,
+  ): Promise<Pick<FileSummary, "fileName" | "summary">> {
+    const prompt = `Please analyze and summarize the following file:
 
 Please provide:
 1. A brief overview of the file's purpose
@@ -48,19 +48,19 @@ ${fileName}
 File Contents:
 ${fileContent}`;
 
-		const result = await this.model.invoke(prompt);
+    const result = await this.model.invoke(prompt);
 
-		return {
-			fileName,
-			summary: result.content.toString(),
-		};
-	}
+    return {
+      fileName,
+      summary: result.content.toString(),
+    };
+  }
 
-	/**
-	 * Generates a technical guide based on provided content
-	 */
-	public async generateGuide(summaries: FileSummary[]): Promise<string> {
-		const prompt = `Please create a technical guide based on the following content:
+  /**
+   * Generates a technical guide based on provided content
+   */
+  public async generateGuide(summaries: FileSummary[]): Promise<string> {
+    const prompt = `Please create a technical guide based on the following content:
 
 Please include:
 1. Overview and purpose - the overview should be in the context of the business purpose of all the files provided.
@@ -72,17 +72,17 @@ Please include:
 Format the response in markdown.
 
 ${summaries
-	.map(
-		(s) =>
-			`File:
+  .map(
+    (s) =>
+      `File:
 ${s.fileName}
 
 File Summary:
 ${s.summary}`,
-	)
-	.join("\n")}`;
+  )
+  .join("\n")}`;
 
-		const result = await this.model.invoke(prompt);
-		return extractMarkdownBlock(result.content.toString());
-	}
+    const result = await this.model.invoke(prompt);
+    return extractMarkdownBlock(result.content.toString());
+  }
 }

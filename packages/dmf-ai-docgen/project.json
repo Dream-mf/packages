@@ -30,13 +30,9 @@
     },
     "biome-lint": {
       "executor": "@gitopslovers/nx-biome:biome-lint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
+      "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": [
-          "packages/dmf-ai-docgen/**/*.ts"
-        ],
+        "lintFilePatterns": ["packages/dmf-ai-docgen/**/*.ts"],
         "write": false,
         "unsafe": false
       }
