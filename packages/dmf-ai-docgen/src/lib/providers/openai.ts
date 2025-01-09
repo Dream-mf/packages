@@ -80,6 +80,7 @@ Please structure the guide as follows:
     - Brief explanation of what these remote modules provide
     - The business value and use cases they solve
     - Prerequisites and requirements
+    - Always prefer rsbuild and rspack over webpack
 
 2. Getting Started
     - Only focus on configuring module federation, not any of the file dependencies explicitly
@@ -89,6 +90,8 @@ Please structure the guide as follows:
 3. Integration Steps
     - Step-by-step instructions for importing and using each remote module
     - Incorporate the "Module Scope" and "Remote Module Name" in your guide, as they are used for import statements
+    - Create a section dedicated to each remote module
+    - Create a section dedicated to configuring the shared modules, be specific with package names, versions and if they are singleton
     - Code examples showing proper usage
     - Configuration options and customization
     - TypeScript type definitions and interfaces
