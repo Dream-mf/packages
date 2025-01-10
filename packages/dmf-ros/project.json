@@ -1,31 +1,28 @@
 {
-  "name": "dmf-utilities",
+  "name": "dmf-ros",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "packages/dmf-utilities/src",
+  "sourceRoot": "packages/dmf-ros/src",
   "projectType": "library",
-  "tags": [
-    "scope:utilties",
-    "type:library"
-  ],
+  "tags": ["scope:react", "type:library"],
   "targets": {
     "build": {
       "executor": "@nx/vite:build",
       "options": {
-        "outputPath": "dist/packages/dmf-utilities",
+        "outputPath": "dist/packages/dmf-ros",
         "assets": [
           {
             "glob": "package.json",
-            "input": "packages/dmf-utilities",
+            "input": "packages/dmf-ros",
             "output": "."
           },
           {
             "glob": "README.md",
-            "input": "packages/dmf-utilities",
+            "input": "packages/dmf-ros",
             "output": "."
           },
           {
             "glob": "LICENSE",
-            "input": "packages/dmf-utilities",
+            "input": "packages/dmf-ros",
             "output": "."
           }
         ]
@@ -35,27 +32,21 @@
       "executor": "@nx/vite:dev-server",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "dmf-utilities:build"
+        "buildTarget": "dmf-ros:build"
       }
     },
     "test": {
       "executor": "@nx/vite:test",
-      "outputs": [
-        "{options.reportsDirectory}"
-      ],
+      "outputs": ["{options.reportsDirectory}"],
       "options": {
-        "reportsDirectory": "../../coverage/packages/dmf-utilities"
+        "reportsDirectory": "../../coverage/packages/dmf-ros"
       }
     },
     "biome-lint": {
       "executor": "@gitopslovers/nx-biome:biome-lint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
+      "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": [
-          "packages/dmf-utilities/**/*.ts"
-        ],
+        "lintFilePatterns": ["packages/dmf-ros/**/*.ts"],
         "write": false,
         "unsafe": false
       }

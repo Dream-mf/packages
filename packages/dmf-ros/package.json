@@ -1,6 +1,6 @@
 {
-  "name": "@dream.mf/utilities",
-  "version": "0.9.10",
+  "name": "@dream.mf/ros",
+  "version": "0.1.0",
   "typings": "./index.d.ts",
   "exports": {
     ".": {
