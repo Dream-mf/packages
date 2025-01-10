@@ -3,15 +3,12 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/dmf-oidc/src",
   "projectType": "library",
-  "tags": [
-    "scope:oidc",
-    "type:library"
-  ],
+  "tags": ["scope:oidc", "type:library"],
   "targets": {
     "build": {
       "executor": "@nx/vite:build",
       "options": {
-        "outputPath": "dist/packages/dmf-oidc",
+        "outputPath": "packages/dmf-oidc/dist",
         "assets": [
           {
             "glob": "package.json",
@@ -40,22 +37,16 @@
     },
     "test": {
       "executor": "@nx/vite:test",
-      "outputs": [
-        "{options.reportsDirectory}"
-      ],
+      "outputs": ["{options.reportsDirectory}"],
       "options": {
         "reportsDirectory": "../../coverage/packages/dmf-oidc"
       }
     },
     "biome-lint": {
       "executor": "@gitopslovers/nx-biome:biome-lint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
+      "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": [
-          "packages/dmf-oidc/**/*.ts"
-        ],
+        "lintFilePatterns": ["packages/dmf-oidc/**/*.ts"],
         "write": false,
         "unsafe": false
       }
