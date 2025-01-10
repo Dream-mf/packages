@@ -1,50 +1,27 @@
 {
   "name": "@dream.mf/logging",
   "version": "1.4.1",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "typings": "dist/index.d.ts",
+  "typings": "./index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./index.mjs",
+      "require": "./index.cjs"
+    }
+  },
   "license": "MIT",
-  "engines": {
-    "node": ">=16",
-    "pnpm": ">=9",
-    "npm": ">=8"
-  },
-  "scripts": {
-    "build": "rollup -c && npm run copy && npm run clean-dev-deps",
-    "copy": "cp package.json dist/ && cp readme.md dist/ && cp LICENSE dist/",
-    "test": "vitest",
-    "clean-dev-deps": "json -f ./dist/package.json -I -e \"delete this.devDependencies;\""
-  },
   "dependencies": {
-    "@dream.mf/core": "1.2.2"
+    "@dream.mf/core": "workspace:*"
   },
   "peerDependencies": {
-    "react": "^18.1.0",
-    "react-dom": "^18.1.0"
+    "react": "^18.0.0 || ^ 19.0.0",
+    "react-dom": "^18.0.0 || ^ 19.0.0"
   },
   "devDependencies": {
     "json": "11.0.0",
-    "@rollup/plugin-commonjs": "^22.0.2",
-    "@rollup/plugin-json": "6.1.0",
-    "@rollup/plugin-node-resolve": "^13.3.0",
-    "@rollup/plugin-typescript": "^8.3.4",
-    "@testing-library/jest-dom": "6.4.5",
     "@vitest/coverage-v8": "^1.6.0",
-    "@vitejs/plugin-react": "4.2.1",
     "jsdom": "^24.0.0",
-    "rollup": "^2.78.0",
-    "rollup-plugin-dts": "^4.2.2",
-    "rollup-plugin-esbuild": "^6.1.1",
-    "rollup-plugin-peer-deps-external": "^2.2.4",
-    "rollup-plugin-sass": "^1.2.13",
-    "rollup-plugin-terser": "^7.0.2",
-    "rollup-plugin-typescript2": "^0.32.1",
     "ts-jest": "^28.0.7",
     "ts-loader": "^9.3.1",
-    "tslib": "2.6.2",
-    "typescript": "^4.7.4",
-    "vite": "5.2.11",
-    "vitest": "1.6.0"
+    "vitest": "2.1.8"
   }
 }

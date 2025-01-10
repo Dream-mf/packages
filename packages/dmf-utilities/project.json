@@ -1,0 +1,64 @@
+{
+  "name": "dmf-utilities",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/dmf-utilities/src",
+  "projectType": "library",
+  "tags": [
+    "scope:utilties",
+    "type:library"
+  ],
+  "targets": {
+    "build": {
+      "executor": "@nx/vite:build",
+      "options": {
+        "outputPath": "dist/packages/dmf-utilities",
+        "assets": [
+          {
+            "glob": "package.json",
+            "input": "packages/dmf-utilities",
+            "output": "."
+          },
+          {
+            "glob": "README.md",
+            "input": "packages/dmf-utilities",
+            "output": "."
+          },
+          {
+            "glob": "LICENSE",
+            "input": "packages/dmf-utilities",
+            "output": "."
+          }
+        ]
+      }
+    },
+    "serve": {
+      "executor": "@nx/vite:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "dmf-utilities:build"
+      }
+    },
+    "test": {
+      "executor": "@nx/vite:test",
+      "outputs": [
+        "{options.reportsDirectory}"
+      ],
+      "options": {
+        "reportsDirectory": "../../coverage/packages/dmf-utilities"
+      }
+    },
+    "biome-lint": {
+      "executor": "@gitopslovers/nx-biome:biome-lint",
+      "outputs": [
+        "{options.outputFile}"
+      ],
+      "options": {
+        "lintFilePatterns": [
+          "packages/dmf-utilities/**/*.ts"
+        ],
+        "write": false,
+        "unsafe": false
+      }
+    }
+  }
+}

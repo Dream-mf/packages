@@ -1,0 +1,64 @@
+{
+  "name": "dmf-oidc",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/dmf-oidc/src",
+  "projectType": "library",
+  "tags": [
+    "scope:oidc",
+    "type:library"
+  ],
+  "targets": {
+    "build": {
+      "executor": "@nx/vite:build",
+      "options": {
+        "outputPath": "dist/packages/dmf-oidc",
+        "assets": [
+          {
+            "glob": "package.json",
+            "input": "packages/dmf-oidc",
+            "output": "."
+          },
+          {
+            "glob": "README.md",
+            "input": "packages/dmf-oidc",
+            "output": "."
+          },
+          {
+            "glob": "LICENSE",
+            "input": "packages/dmf-oidc",
+            "output": "."
+          }
+        ]
+      }
+    },
+    "serve": {
+      "executor": "@nx/vite:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "dmf-oidc:build"
+      }
+    },
+    "test": {
+      "executor": "@nx/vite:test",
+      "outputs": [
+        "{options.reportsDirectory}"
+      ],
+      "options": {
+        "reportsDirectory": "../../coverage/packages/dmf-oidc"
+      }
+    },
+    "biome-lint": {
+      "executor": "@gitopslovers/nx-biome:biome-lint",
+      "outputs": [
+        "{options.outputFile}"
+      ],
+      "options": {
+        "lintFilePatterns": [
+          "packages/dmf-oidc/**/*.ts"
+        ],
+        "write": false,
+        "unsafe": false
+      }
+    }
+  }
+}

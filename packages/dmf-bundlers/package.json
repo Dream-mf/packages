@@ -1,33 +1,29 @@
 {
   "name": "@dream.mf/bundlers",
   "version": "0.4.0",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "typings": "dist/index.d.ts",
+  "typings": "./index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./index.mjs",
+      "require": "./index.cjs"
+    }
+  },
   "license": "MIT",
-  "engines": {
-    "node": ">=16",
-    "npm": ">=8"
-  },
-  "scripts": {
-    "build": "rollup -c && npm run copy",
-    "copy": "cp package.json dist/ && cp readme.md dist/ && cp LICENSE dist/",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "dependencies": {
-    "react": "19.0.0",
-    "react-dom": "19.0.0",
-    "@dream.mf/core": "1.1.2",
-    "@module-federation/enhanced": "0.1.11",
+    "@dream.mf/core": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^18.17.17"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0",
+    "@module-federation/enhanced": "^0.8.7",
     "css-loader": "^6.8.1",
-    "dotenv": "16.0.1",
-    "dotenv-webpack": "8.1.0",
-    "esbuild-loader": "^3.2.0",
-    "eslint": "^8.49.0",
-    "eslint-config-prettier": "^9.0.0",
-    "eslint-plugin-prettier": "^5.0.0",
+    "dotenv": "^16.0.1",
+    "dotenv-webpack": "^8.1.0",
     "html-webpack-plugin": "^5.5.3",
-    "mini-css-extract-plugin": "2.6.1",
+    "mini-css-extract-plugin": "^2.6.1",
     "postcss": "^8.4.29",
     "postcss-loader": "^7.3.3",
     "postcss-normalize": "^10.0.1",
@@ -37,32 +33,11 @@
     "sass-mq": "^6.0.0",
     "tsconfig-paths-webpack-plugin": "^4.1.0",
     "typescript-plugin-css-modules": "^5.0.1",
-    "path": "0.12.7",
-    "webpack": "^5.75.0",
-    "webpack-cli": "^5.0.1",
-    "webpack-dev-server": "^4.11.1",
-    "@rspack/cli": "^0.6.5",
-    "@rspack/binding": "^0.6.5",
-    "@rspack/core": "^0.6.5",
-    "@rspack/plugin-react-refresh": "^0.6.5",
-    "@types/node": "^18.17.17"
-  },
-  "devDependencies": {
-    "rollup": "^2.78.0",
-    "@rollup/plugin-json": "6.1.0",
-    "rollup-plugin-dts": "^4.2.2",
-    "rollup-plugin-peer-deps-external": "^2.2.4",
-    "rollup-plugin-sass": "^1.2.13",
-    "rollup-plugin-terser": "^7.0.2",
-    "rollup-plugin-typescript2": "^0.32.1",
-    "rollup-plugin-esbuild": "^6.1.1",
-    "@rollup/plugin-commonjs": "^22.0.2",
-    "@rollup/plugin-node-resolve": "^13.3.0",
-    "@rollup/plugin-typescript": "^8.3.4",
-    "typescript": "^4.7.4",
-    "@types/node": "^18.17.17",
-    "tslib": "2.6.2",
-    "ts-jest": "^28.0.7",
-    "ts-loader": "^9.3.1"
+    "webpack": "^5.97.1",
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.2.0",
+    "@rspack/cli": "^1.1.8",
+    "@rspack/core": "^1.1.8",
+    "@rspack/plugin-react-refresh": "^1.0.1"
   }
 }

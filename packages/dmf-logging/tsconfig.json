@@ -1,13 +1,10 @@
 {
+	"extends": "../../tsconfig.base.json",
 	"compilerOptions": {
-		"target": "ES6",
-		"lib": ["es6", "es2018", "dom"],
-		"jsx": "react",
-		"module": "esnext",
+		"jsx": "react-jsx",
 		"sourceMap": true,
 		"outDir": "dist",
 		"strict": false,
-		"moduleResolution": "node",
 		"allowSyntheticDefaultImports": true,
 		"esModuleInterop": true,
 		"skipLibCheck": true,
@@ -15,7 +12,16 @@
 		"declaration": true,
 		"declarationDir": "types",
 		"emitDeclarationOnly": true,
-		"resolveJsonModule": true,
-		"types": ["vitest/globals", "@testing-library/jest-dom"]
-	}
+		"resolveJsonModule": true
+	},
+	"references": [
+		{
+			"path": "./tsconfig.lib.json"
+		},
+		{
+			"path": "./tsconfig.spec.json"
+		}
+	],
+	"include": [],
+	"files": []
 }

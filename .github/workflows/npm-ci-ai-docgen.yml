@@ -1,0 +1,37 @@
+name: CI - Dream.mf AI Docgen
+
+on:
+  pull_request:
+    paths:
+      - "packages/dmf-ai-docgen/**"
+      - ".github/workflows/npm-publish-ai-docgen.yml"
+  release:
+    types: [created]
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    env:
+      PACKAGE_DIR: packages/dmf-ai-docgen
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 21
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 9
+      - name: Install NX CLI
+        run: pnpm add -g nx
+      - name: Install dependencies
+        run: pnpm install
+      - name: Lint
+        run: pnpm biome lint --error-on-warnings --write ./packages/dmf-ai-docgen
+      - name: Format
+        run: pnpm biome format --error-on-warnings --write ./packages/dmf-ai-docgen
+      - name: Check untracked
+        shell: bash
+        run: |
+          pnpm check:untracked
+      - name: Build
+        run: pnpm nx build dmf-ai-docgen
