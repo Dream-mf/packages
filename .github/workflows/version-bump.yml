@@ -1,0 +1,52 @@
+name: Version Bump
+
+on:
+  workflow_dispatch:
+    inputs:
+      bump_type:
+        description: 'Version bump type (major/minor/patch)'
+        required: true
+        default: 'patch'
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+      package_name:
+        description: 'Package to bump version for'
+        required: true
+        type: choice
+        options:
+          - dmf-ai-docgen
+          - dmf-bundlers
+          - dmf-core
+          - dmf-logging
+          - dmf-oidc
+          - dmf-react
+          - dmf-ros
+
+jobs:
+  bump-version:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Setup Git
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+      
+      - name: Bump Version
+        run: |
+          cd packages/${{ github.event.inputs.package_name }}
+          npm version ${{ github.event.inputs.bump_type }} -m "Bump ${{ github.event.inputs.package_name }} version to %s"
+      
+      - name: Push Changes
+        run: |
+          git push
+          git push --tags
