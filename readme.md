@@ -25,6 +25,11 @@ You can find published packages here: https://www.npmjs.com/org/dream.mf
 
 [![Publish - Dream.mf Bundlers](https://github.com/Dream-mf/packages/actions/workflows/npm-publish-bundlers.yml/badge.svg)](https://github.com/Dream-mf/packages/actions/workflows/npm-publish-bundlers.yml)
 
-⚫ **Utilities:** This is the utilities package which provides various utility and extension functionality for Module Federation and other Dream.mf packages.
+⚫ **React:** This is the react package which provides various utilities, hooks, and extension functionality for Module Federation and other Dream.mf packages.
 
-[![Publish - Dream.mf Utilities](https://github.com/Dream-mf/packages/actions/workflows/npm-publish-utilities.yml/badge.svg)](https://github.com/Dream-mf/packages/actions/workflows/npm-publish-utilities.yml)
+[![Publish - Dream.mf React](https://github.com/Dream-mf/packages/actions/workflows/npm-publish-react.yml/badge.svg)](https://github.com/Dream-mf/packages/actions/workflows/npm-publish-react.yml)
+
+
+⚫ **ROS:** This is the package which provides access and utilities for use with Remote Orchestration Services.
+
+[![Publish - Dream.mf ROS](https://github.com/Dream-mf/packages/actions/workflows/npm-publish-ros.yml/badge.svg)](https://github.com/Dream-mf/packages/actions/workflows/npm-publish-ros.yml)

@@ -7,6 +7,9 @@ export interface ImportRemoteOptions {
   module: string;
   /** The URL for the remote to use, short circuits Azure App Config */
   remoteUrl?: string | undefined;
+  /** Fallback URL if remoteUrl is not available */
+  remoteUrlFallback: string | undefined;
+  /** Busting the remote entry cache */
   bustRemoteEntryCache?: boolean;
 }
 
@@ -27,7 +30,7 @@ export interface WebpackContainerScope {
   init(scopes: unknown): Promise<Record<string, unknown>>;
 }
 
-export const REMOTE_ENTRY_FILE = 'remote.js';
+export const REMOTE_ENTRY_FILE = "remote.js";
 
 export default {
   REMOTE_ENTRY_FILE,
