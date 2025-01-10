@@ -1,21 +1,28 @@
 {
   "name": "@dream.mf/react",
   "version": "0.9.2",
-  "typings": "./index.d.ts",
+  "typings": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./index.mjs",
-      "require": "./index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     }
   },
+  "files": ["dist", "readme.md"],
   "license": "MIT",
   "dependencies": {
     "@dream.mf/core": "workspace:*",
     "@dream.mf/logging": "workspace:*"
   },
+  "devDependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-router": "^7.0.0",
+    "react-router-dom": "^7.0.0"
+  },
   "peerDependencies": {
-    "react": "^18.0.0 || ^ 19.0.0",
-    "react-dom": "^18.0.0 || ^ 19.0.0",
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0",
     "react-router": "^6.0.0 || ^7.0.0",
     "react-router-dom": "^6.0.0 || ^7.0.0"
   }

@@ -26,7 +26,7 @@ jobs:
       - name: Install dependencies
         run: pnpm install
       - name: Build
-        run: pnpm nx build dmf-utilties
+        run: pnpm nx build dmf-react
       - run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NODE_AUTH_TOKEN }}" > .npmrc
         working-directory: ${{ env.PACKAGE_DIR }}
         shell: bash
