@@ -8,6 +8,7 @@
       "require": "./index.cjs"
     }
   },
+  "files": ["dist", "readme.md"],
   "license": "MIT",
   "repository": {
     "type": "git",

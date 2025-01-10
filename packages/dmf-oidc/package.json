@@ -14,6 +14,7 @@
       "email": "cfryerdev@gmail.com"
     }
   ],
+  "files": ["dist", "readme.md"],
   "license": "MIT",
   "dependencies": {
     "@dream.mf/core": "workspace:*",

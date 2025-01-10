@@ -3,15 +3,12 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/dmf-bundlers/src",
   "projectType": "library",
-  "tags": [
-    "scope:bundlers",
-    "type:library"
-  ],
+  "tags": ["scope:bundlers", "type:library"],
   "targets": {
     "build": {
       "executor": "@nx/vite:build",
       "options": {
-        "outputPath": "dist/packages/dmf-bundlers",
+        "outputPath": "packages/dmf-bundlers/dist",
         "assets": [
           {
             "glob": "package.json",
@@ -40,22 +37,16 @@
     },
     "test": {
       "executor": "@nx/vite:test",
-      "outputs": [
-        "{options.reportsDirectory}"
-      ],
+      "outputs": ["{options.reportsDirectory}"],
       "options": {
         "reportsDirectory": "../../coverage/packages/dmf-bundlers"
       }
     },
     "biome-lint": {
       "executor": "@gitopslovers/nx-biome:biome-lint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
+      "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": [
-          "packages/dmf-bundlers/**/*.ts"
-        ],
+        "lintFilePatterns": ["packages/dmf-bundlers/**/*.ts"],
         "write": false,
         "unsafe": false
       }
