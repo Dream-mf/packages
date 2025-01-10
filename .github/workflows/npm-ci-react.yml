@@ -1,10 +1,10 @@
-name: CI - Dream.mf Utilities
+name: CI - Dream.mf React
 
 on:
   pull_request:
     paths:
-      - "packages/dmf-utilities/**"
-      - ".github/workflows/npm-publish-utilities.yml"
+      - 'packages/dmf-react/**'
+      - '.github/workflows/npm-publish-react.yml'
   release:
     types: [created]
 
@@ -12,7 +12,7 @@ jobs:
   build-and-publish:
     runs-on: ubuntu-latest
     env:
-      PACKAGE_DIR: packages/dmf-utilities
+      PACKAGE_DIR: packages/dmf-react
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v3
@@ -26,4 +26,4 @@ jobs:
       - name: Install dependencies
         run: pnpm install
       - name: Build
-        run: pnpm nx build dmf-utilities
+        run: pnpm nx build dmf-react

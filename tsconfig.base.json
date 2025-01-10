@@ -23,6 +23,7 @@
       "@dream.mf/logging": ["packages/dmf-logging/src/index.ts"],
       "@dream.mf/oidc": ["packages/dmf-oidc/src/index.ts"],
       "@dream.mf/react": ["packages/dmf-react/src/index.ts"],
+      "@dream.mf/ros": ["packages/dmf-ros/src/index.ts"],
       "@dream.mf/utilities": ["packages/dmf-utilities/src/index.ts"]
     }
   },

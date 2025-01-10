@@ -3,8 +3,8 @@ import {
   validateRuntime,
   registerRuntimePlugin,
   RuntimeNotFoundError,
-} from "@dream.mf/core";
-import { version } from "../package.json";
+} from '@dream.mf/core';
+import { version } from '../package.json';
 
 /**  Validates the runtime is installed, if so, validates if the plugin is setup.
  *   If its missing, it will set up the logger with the dream-mf runtime */
@@ -13,8 +13,8 @@ export const setupRuntime = () => {
     console.warn(RuntimeNotFoundError);
     init();
   }
-  registerRuntimePlugin("utilities", {
-    package: `@dream.mf/utilities:${version}`,
+  registerRuntimePlugin('ros', {
+    package: `@dream.mf/ros:${version}`,
   });
 };
 
