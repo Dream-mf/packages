@@ -1,11 +1,11 @@
 {
   "name": "@dream.mf/oidc",
   "version": "1.0.0",
-  "typings": "./index.d.ts",
+  "typings": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./index.mjs",
-      "require": "./index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     }
   },
   "authors": [
@@ -14,6 +14,7 @@
       "email": "cfryerdev@gmail.com"
     }
   ],
+  "files": ["dist", "readme.md"],
   "license": "MIT",
   "dependencies": {
     "@dream.mf/core": "workspace:*",

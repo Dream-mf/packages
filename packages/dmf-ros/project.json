@@ -3,12 +3,12 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/dmf-ros/src",
   "projectType": "library",
-  "tags": ["scope:react", "type:library"],
+  "tags": ["scope:utilties", "type:library"],
   "targets": {
     "build": {
       "executor": "@nx/vite:build",
       "options": {
-        "outputPath": "dist/packages/dmf-ros",
+        "outputPath": "packages/dmf-ros/dist",
         "assets": [
           {
             "glob": "package.json",

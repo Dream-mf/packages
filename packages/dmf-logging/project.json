@@ -3,15 +3,12 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/dmf-logging/src",
   "projectType": "library",
-  "tags": [
-    "scope:logging",
-    "type:library"
-  ],
+  "tags": ["scope:logging", "type:library"],
   "targets": {
     "build": {
       "executor": "@nx/vite:build",
       "options": {
-        "outputPath": "dist/packages/dmf-logging",
+        "outputPath": "packages/dmf-logging/dist",
         "assets": [
           {
             "glob": "package.json",
@@ -40,22 +37,16 @@
     },
     "test": {
       "executor": "@nx/vite:test",
-      "outputs": [
-        "{options.reportsDirectory}"
-      ],
+      "outputs": ["{options.reportsDirectory}"],
       "options": {
         "reportsDirectory": "../../coverage/packages/dmf-logging"
       }
     },
     "biome-lint": {
       "executor": "@gitopslovers/nx-biome:biome-lint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
+      "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": [
-          "packages/dmf-logging/**/*.ts"
-        ],
+        "lintFilePatterns": ["packages/dmf-logging/**/*.ts"],
         "write": false,
         "unsafe": false
       }

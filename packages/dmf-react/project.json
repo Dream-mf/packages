@@ -3,15 +3,12 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/dmf-react/src",
   "projectType": "library",
-  "tags": [
-    "scope:react",
-    "type:library"
-  ],
+  "tags": ["scope:react", "type:library"],
   "targets": {
     "build": {
       "executor": "@nx/vite:build",
       "options": {
-        "outputPath": "dist/packages/dmf-react",
+        "outputPath": "packages/dmf-react/dist",
         "assets": [
           {
             "glob": "package.json",
@@ -40,22 +37,16 @@
     },
     "test": {
       "executor": "@nx/vite:test",
-      "outputs": [
-        "{options.reportsDirectory}"
-      ],
+      "outputs": ["{options.reportsDirectory}"],
       "options": {
         "reportsDirectory": "../../coverage/packages/dmf-react"
       }
     },
     "biome-lint": {
       "executor": "@gitopslovers/nx-biome:biome-lint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
+      "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": [
-          "packages/dmf-react/**/*.ts"
-        ],
+        "lintFilePatterns": ["packages/dmf-react/**/*.ts"],
         "write": false,
         "unsafe": false
       }
