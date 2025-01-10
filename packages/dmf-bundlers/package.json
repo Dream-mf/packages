@@ -1,11 +1,11 @@
 {
   "name": "@dream.mf/bundlers",
   "version": "0.4.0",
-  "typings": "./index.d.ts",
+  "typings": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./index.mjs",
-      "require": "./index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     }
   },
   "files": ["dist", "readme.md"],
