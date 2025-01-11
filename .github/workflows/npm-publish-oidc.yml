@@ -18,18 +18,31 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 21
+          registry-url: 'https://registry.npmjs.org'
       - uses: pnpm/action-setup@v3
         with:
           version: 9
+      
+      # Install dependencies and build
       - name: Install NX CLI
         run: pnpm add -g nx
       - name: Install dependencies
         run: pnpm install
       - name: Build
         run: pnpm nx build dmf-oidc
-      - run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NODE_AUTH_TOKEN }}" > .npmrc
+
+      # Publishing steps
+      - name: Configure publishing
+        run: |
+          echo "//registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}" > .npmrc
+          echo "auto-install-peers=true" >> .npmrc
+          echo "strict-peer-dependencies=false" >> .npmrc
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
+      
+      # Use pnpm publish directly with workspace protocol handling
+      - name: Publish package
+        run: pnpm publish --access public --no-git-checks
         working-directory: ${{ env.PACKAGE_DIR }}
-        shell: bash
-      - run: ls -alh ${{ env.PACKAGE_DIR }}
-      - run: npm publish --access public
-        working-directory: ${{ env.PACKAGE_DIR }}
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
