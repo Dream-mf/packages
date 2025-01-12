@@ -2,37 +2,43 @@ import { useState } from "react";
 import { RosService } from "../services/ros-service";
 import type { RemoteResponse } from "../types";
 
-interface UseGetRemotesByAccessKey {
+interface UseGetRemoteByAccessKey {
   loading: boolean;
   error: Error | null;
-  getRemotesByAccessKey: (accessKey: string) => Promise<RemoteResponse[]>;
-  getRemotesByAccessKeyWithBasePath: (
+  getRemoteByAccessKey: (
+    accessKey: string,
+    key: string,
+  ) => Promise<RemoteResponse>;
+  getRemoteByAccessKeyWithBasePath: (
     basePath: string,
     accessKey: string,
-  ) => Promise<RemoteResponse[]>;
+    key: string,
+  ) => Promise<RemoteResponse>;
 }
 
-export const useGetRemotesByAccessKey = (): UseGetRemotesByAccessKey => {
+export const useGetRemoteByAccessKey = (): UseGetRemoteByAccessKey => {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<Error | null>(null);
   const rosService = RosService.getInstance();
 
-  const getRemotesByAccessKey = async (
+  const getRemoteByAccessKey = async (
     accessKey: string,
-  ): Promise<RemoteResponse[]> => {
+    key: string,
+  ): Promise<RemoteResponse> => {
     const basePath = process.env.REACT_APP_API_BASE_URL || "";
-    return getRemotesByAccessKeyWithBasePath(basePath, accessKey);
+    return getRemoteByAccessKeyWithBasePath(basePath, accessKey, key);
   };
 
-  const getRemotesByAccessKeyWithBasePath = async (
+  const getRemoteByAccessKeyWithBasePath = async (
     basePath: string,
     accessKey: string,
-  ): Promise<RemoteResponse[]> => {
+    key: string,
+  ): Promise<RemoteResponse> => {
     setLoading(true);
     setError(null);
 
     try {
-      const data = await rosService.getRemotesByAccessKey(basePath, accessKey);
+      const data = await rosService.getRemoteByAccessKey(basePath, accessKey, key);
       return data;
     } catch (err) {
       setError(err instanceof Error ? err : new Error("An error occurred"));
@@ -45,7 +51,7 @@ export const useGetRemotesByAccessKey = (): UseGetRemotesByAccessKey => {
   return {
     loading,
     error,
-    getRemotesByAccessKey,
-    getRemotesByAccessKeyWithBasePath,
+    getRemoteByAccessKey,
+    getRemoteByAccessKeyWithBasePath,
   };
 };
