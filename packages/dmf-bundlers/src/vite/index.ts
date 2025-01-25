@@ -21,10 +21,6 @@ export const withBaseVite = (customConfig: ViteCustomConfig): UserConfig => {
 
   const plugins = [
     react(),
-    // Only add federation if config exists
-    ...(customConfig.federationConfig
-      ? [federation(customConfig.federationConfig)]
-      : []),
     dts({
       entryRoot: customConfig.dtsConfig?.entryRoot ?? "src",
       tsconfigPath:
@@ -32,6 +28,10 @@ export const withBaseVite = (customConfig: ViteCustomConfig): UserConfig => {
         join(process.cwd(), "tsconfig.lib.json"),
     }),
   ];
+
+  if (customConfig.federationConfig) {
+    plugins.push(federation(customConfig.federationConfig));
+  }
 
   return defineConfig({
     mode: prod ? "production" : "development",
@@ -49,7 +49,6 @@ export const withBaseVite = (customConfig: ViteCustomConfig): UserConfig => {
       extensions: defaults._defaultExtensions(),
       alias: { ...defaults._defaultAliases().alias },
     },
-    //@ts-expect-error
     plugins,
     css: {
       modules: {
