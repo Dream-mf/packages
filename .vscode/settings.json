@@ -20,5 +20,6 @@
     "source.organizeImports.biome": "always",
     "quickfix.biome": "always",
     "source.fixAll.biome": "always"
-  }
+  },
+  "workbench.colorTheme": "Visual Studio 2019 Dark"
 }
