@@ -1,9 +1,9 @@
-import webpack from "webpack";
 import DotenvPlugin from "dotenv-webpack";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
-import loaders from "../common/loaders";
+import webpack from "webpack";
 import defaults from "../common/defaults";
+import loaders from "../common/loaders";
 import rules from "../common/rules";
 import types from "../common/types";
 
@@ -13,6 +13,8 @@ const { ModuleFederationPlugin } = webpack.container;
  * @param {Object} customConfig Config overrides to pass to the WebPackConfig and ModuleFederationPlugin.
  * @param {boolean} [isTypescript] Whether or not this module uses Typescript.
  */
+
+// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 export const withBaseWebpack = (customConfig: any, isTypescript = true) => {
   loaders._envLoader();
   const prod = process.env.NODE_ENV === "production";
