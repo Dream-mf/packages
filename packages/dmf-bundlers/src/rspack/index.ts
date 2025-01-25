@@ -19,12 +19,12 @@ import types from "../common/types";
 // biome-ignore lint/suspicious/noExplicitAny: <explanation>
 export const withBaseRspack = (customConfig: any, isTypescript: boolean) => {
   loaders._envLoader();
-  const prod = process.env.NODE_ENV === "production";
+  const prod = process.env?.NODE_ENV === "production";
   return defineConfig({
     entry: `./src/index.${isTypescript ? "ts" : "js"}`,
     mode: prod ? "production" : "development",
     devtool:
-      (process.env.NODE_ENV || "development") === "development"
+      (process.env?.NODE_ENV || "development") === "development"
         ? "inline-source-map"
         : "source-map",
     devServer: {

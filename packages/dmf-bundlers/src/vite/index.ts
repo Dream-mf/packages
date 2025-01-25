@@ -49,6 +49,7 @@ export const withBaseVite = (customConfig: ViteCustomConfig): UserConfig => {
       extensions: defaults._defaultExtensions(),
       alias: { ...defaults._defaultAliases().alias },
     },
+    //@ts-expect-error
     plugins,
     css: {
       modules: {
