@@ -30,6 +30,21 @@ export class RosService {
   }
 
   /**
+   * Fetches remotes information for a host using a full url, usually for local dev purposes
+   * @param basePath - The base URL for the API
+   * @returns Promise<RemoteResponse[]>
+   */
+  public async getRemotesByFullUrl(
+    fullUrl: string
+  ): Promise<RemoteResponse[]> {
+    const response = await fetch(fullUrl);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    return (await response.json()) as RemoteResponse[];
+  }
+
+  /**
    * Fetches remotes information for a host using an access key and base path
    * @param basePath - The base URL for the API
    * @param accessKey - The access key to identify the host
