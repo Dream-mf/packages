@@ -1,25 +1,42 @@
 {
   "name": "@dream.mf/bundlers",
-  "version": "0.4.3",
+  "version": "0.5.1",
   "typings": "./dist/index.d.ts",
   "exports": {
     ".": {
       "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs"
+      "require": "./dist/index.cjs",
+      "types": "./dist/index.d.ts"
+    },
+    "./rspack": {
+      "import": "./dist/rspack.mjs",
+      "require": "./dist/rspack.cjs",
+      "types": "./dist/rspack/index.d.ts"
+    },
+    "./webpack": {
+      "import": "./dist/webpack.mjs",
+      "require": "./dist/webpack.cjs",
+      "types": "./dist/webpack/index.d.ts"
+    },
+    "./vite": {
+      "import": "./dist/vite.mjs",
+      "require": "./dist/vite.cjs",
+      "types": "./dist/vite/index.d.ts"
     }
   },
   "files": ["dist", "readme.md"],
   "license": "MIT",
   "dependencies": {
-    "@dream.mf/core": "workspace:*"
+    "@dream.mf/core": "workspace:*",
+    "@module-federation/vite": "^1.2.1",
+    "@module-federation/enhanced": "^0.8.9",
+    "vite-plugin-node-polyfills": "0.23.0",
+    "vite-plugin-dts": "4.5.0"
   },
   "devDependencies": {
-    "@types/node": "^18.17.17"
-  },
-  "peerDependencies": {
+    "@types/node": "^18.17.17",
     "react": "^18.0.0 || ^19.0.0",
     "react-dom": "^18.0.0 || ^19.0.0",
-    "@module-federation/enhanced": "^0.8.7",
     "css-loader": "^6.8.1",
     "dotenv": "^16.0.1",
     "dotenv-webpack": "^8.1.0",
@@ -37,8 +54,34 @@
     "webpack": "^5.97.1",
     "webpack-cli": "^6.0.1",
     "webpack-dev-server": "^5.2.0",
-    "@rspack/cli": "^1.1.8",
-    "@rspack/core": "^1.1.8",
-    "@rspack/plugin-react-refresh": "^1.0.1"
+    "@rspack/cli": "^1.2.2",
+    "@rspack/core": "^1.2.2",
+    "@rspack/plugin-react-refresh": "^1.0.1",
+    "vite": "5.4.14"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0",
+    "css-loader": "^6.8.1",
+    "dotenv": "^16.0.1",
+    "dotenv-webpack": "^8.1.0",
+    "html-webpack-plugin": "^5.5.3",
+    "mini-css-extract-plugin": "^2.6.1",
+    "postcss": "^8.4.29",
+    "postcss-loader": "^7.3.3",
+    "postcss-normalize": "^10.0.1",
+    "postcss-preset-env": "^8.5.1",
+    "sass": "^1.67.0",
+    "sass-loader": "^13.3.2",
+    "sass-mq": "^6.0.0",
+    "tsconfig-paths-webpack-plugin": "^4.1.0",
+    "typescript-plugin-css-modules": "^5.0.1",
+    "webpack": "^5.97.1",
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.2.0",
+    "@rspack/cli": "^1.2.2",
+    "@rspack/core": "^1.2.2",
+    "@rspack/plugin-react-refresh": "^1.0.1",
+    "vite": "5.4.14"
   }
 }

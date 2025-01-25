@@ -1,4 +1,4 @@
-const fs = require("fs");
+const fs = require("node:fs");
 
 /** Minimal configuration for css loader */
 export const _cssLoader = (hasCssModules = false) => {
