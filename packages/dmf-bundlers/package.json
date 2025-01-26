@@ -1,6 +1,6 @@
 {
   "name": "@dream.mf/bundlers",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "typings": "./dist/index.d.ts",
   "exports": {
     ".": {
