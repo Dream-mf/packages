@@ -1,6 +1,6 @@
+import path from "node:path";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import loaders from "./loaders";
-import path from "path";
 
 export const _rulesAssets = () => {
   return [{ test: /\.(png|svg|jpg|jpeg|mp3)$/, type: "asset/resource" }];

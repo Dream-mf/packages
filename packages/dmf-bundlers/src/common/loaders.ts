@@ -34,7 +34,7 @@ export const _sassLoader = {
 
 export const _envLoader = () => {
   const filePath = "../../host/.env";
-  if (fs.existsSync(filePath) && process.env.NODE_ENV === "development") {
+  if (fs.existsSync(filePath) && process.env?.NODE_ENV === "development") {
     require("dotenv").config({ path: filePath });
   } else {
     require("dotenv").config();

@@ -97,7 +97,7 @@ export const withBaseRspack = (customConfig: any, isTypescript: boolean) => {
           ],
           type: "css/auto",
         },
-        rules._rulesAssets(),
+        ...rules._rulesAssets(),
       ],
     },
     plugins: [

@@ -1,7 +1,12 @@
 import { join } from "node:path";
 import { federation } from "@module-federation/vite";
 import react from "@vitejs/plugin-react";
-import { type UserConfig, defineConfig } from "vite";
+import {
+  type Plugin,
+  type PluginOption,
+  type UserConfig,
+  defineConfig,
+} from "vite";
 import dts from "vite-plugin-dts";
 import defaults from "../common/defaults";
 import loaders from "../common/loaders";
@@ -30,7 +35,8 @@ export const withBaseVite = (customConfig: ViteCustomConfig): UserConfig => {
   ];
 
   if (customConfig.federationConfig) {
-    plugins.push(federation(customConfig.federationConfig));
+    const fedPlugin = federation(customConfig.federationConfig);
+    plugins.push(...(Array.isArray(fedPlugin) ? fedPlugin : [fedPlugin]));
   }
 
   return defineConfig({
@@ -49,7 +55,7 @@ export const withBaseVite = (customConfig: ViteCustomConfig): UserConfig => {
       extensions: defaults._defaultExtensions(),
       alias: { ...defaults._defaultAliases().alias },
     },
-    plugins,
+    plugins: plugins as PluginOption[],
     css: {
       modules: {
         localsConvention: "camelCase",
