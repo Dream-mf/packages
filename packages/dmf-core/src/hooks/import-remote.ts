@@ -1,8 +1,6 @@
 import { registerRuntimeRemote } from "@dream.mf/core";
-import { DreamMFLogClient } from "@dream.mf/logging";
 import { registerRemotes } from "@module-federation/runtime";
-import { setupRuntime } from "../core";
-import type { ImportRemoteOptions, LoadRemoteOptions } from "../types";
+import type { ImportRemoteOptions } from "../types";
 import { preloadRemote } from "./preload-remote";
 
 /** ==================================================================================== */
@@ -64,7 +62,6 @@ export const importRemote = async <T>({
   remoteUrlFallback,
   bustRemoteEntryCache = false,
 }: ImportRemoteOptions): Promise<T> => {
-  setupRuntime();
   if (!window[scope]) {
     const remoteDetails = remoteUrlFallback
       ? { value: remoteUrlFallback }
@@ -86,16 +83,16 @@ export const importRemote = async <T>({
       const error = new Error(
         `Remote loaded successfully but ${scope} could not be found! Verify that the name is correct in the configuration!`,
       );
-      DreamMFLogClient.logException({
-        type: "REMOTE_MODULE_LOAD_EXCEPTION",
-        error,
-        properties: {
-          url: remoteUrl,
-          remoteUrlFallback,
-          scope,
-          module,
-        },
-      });
+      // DreamMFLogClient.logException({
+      //   type: "REMOTE_MODULE_LOAD_EXCEPTION",
+      //   error,
+      //   properties: {
+      //     url: remoteUrl,
+      //     remoteUrlFallback,
+      //     scope,
+      //     module,
+      //   },
+      // });
       throw error;
     }
     // Initialize the container to get shared modules and get the module factory:
@@ -110,14 +107,14 @@ export const importRemote = async <T>({
       },
     ]);
     registerRuntimeRemote(scope, module, remoteDetails.value);
-    DreamMFLogClient.logEvent({
-      eventName: "REMOTE_MODULE_LOADED",
-      details: remoteDetails.value,
-      properties: {
-        scope,
-        module,
-      },
-    });
+    // DreamMFLogClient.logEvent({
+    //   eventName: "REMOTE_MODULE_LOADED",
+    //   details: remoteDetails.value,
+    //   properties: {
+    //     scope,
+    //     module,
+    //   },
+    // });
     return moduleFactory();
     // biome-ignore lint/style/noUselessElse: <explanation>
   } else {

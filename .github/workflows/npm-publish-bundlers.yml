@@ -10,6 +10,7 @@ on:
 
 jobs:
   build-and-publish:
+    if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     env:
       PACKAGE_DIR: packages/dmf-bundlers
@@ -40,8 +41,25 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
       
+      # Check if version exists
+      - name: Check if version exists
+        id: version_check
+        run: |
+          PKG_VERSION=$(node -p "require('./package.json').version")
+          if npm view "@dream.mf/bundlers@$PKG_VERSION" version &> /dev/null; then
+            echo "Version $PKG_VERSION already exists, skipping publish"
+            echo "exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "Version $PKG_VERSION does not exist, proceeding with publish"
+            echo "exists=false" >> $GITHUB_OUTPUT
+          fi
+        working-directory: ${{ env.PACKAGE_DIR }}
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
+      
       # Use pnpm publish directly with workspace protocol handling
       - name: Publish package
+        if: steps.version_check.outputs.exists != 'true'
         run: pnpm publish --access public --no-git-checks
         working-directory: ${{ env.PACKAGE_DIR }}
         env:

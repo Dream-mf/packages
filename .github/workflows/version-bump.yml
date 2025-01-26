@@ -50,3 +50,53 @@ jobs:
         run: |
           git push
           git push --tags
+
+      # Setup Node.js and pnpm
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 21
+          registry-url: 'https://registry.npmjs.org'
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 9
+      
+      # Install dependencies and build
+      - name: Install NX CLI
+        run: pnpm add -g nx
+      - name: Install dependencies
+        run: pnpm install
+      - name: Build package
+        run: pnpm nx build ${{ github.event.inputs.package_name }}
+
+      # Publishing steps
+      - name: Configure publishing
+        run: |
+          echo "//registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}" > .npmrc
+          echo "auto-install-peers=true" >> .npmrc
+          echo "strict-peer-dependencies=false" >> .npmrc
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
+      
+      # Check if version exists
+      - name: Check if version exists
+        id: version_check
+        run: |
+          PKG_VERSION=$(node -p "require('./package.json').version")
+          if npm view "@dream.mf/${{ github.event.inputs.package_name }}@$PKG_VERSION" version &> /dev/null; then
+            echo "Version $PKG_VERSION already exists, skipping publish"
+            echo "exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "Version $PKG_VERSION does not exist, proceeding with publish"
+            echo "exists=false" >> $GITHUB_OUTPUT
+          fi
+        working-directory: packages/${{ github.event.inputs.package_name }}
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
+      
+      # Use pnpm publish directly with workspace protocol handling
+      - name: Publish package
+        if: steps.version_check.outputs.exists != 'true'
+        run: pnpm publish --access public --no-git-checks
+        working-directory: packages/${{ github.event.inputs.package_name }}
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
