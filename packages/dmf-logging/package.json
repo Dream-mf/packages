@@ -1,11 +1,11 @@
 {
   "name": "@dream.mf/logging",
-  "version": "1.4.3",
-  "typings": "./dist/index.d.ts",
+  "version": "1.4.4",
   "exports": {
     ".": {
       "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs"
+      "require": "./dist/index.cjs",
+      "types": "./dist/index.d.ts"
     }
   },
   "files": ["dist", "readme.md"],
