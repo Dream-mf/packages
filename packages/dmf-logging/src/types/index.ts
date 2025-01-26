@@ -43,6 +43,7 @@ export type LogEvent = {
 
 export type LogPageView = {
   url: string;
+  page: string;
 } & LogCommon;
 
 export type LogCommon = {
