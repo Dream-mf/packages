@@ -1,4 +1,4 @@
-import { registerRuntimeRemote } from "@dream.mf/core";
+import { registerRuntimeRemote } from "../register";
 import { registerRemotes } from "@module-federation/runtime";
 import type { ImportRemoteOptions } from "../types";
 import { preloadRemote } from "./preload-remote";
