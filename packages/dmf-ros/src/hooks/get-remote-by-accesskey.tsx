@@ -1,44 +1,25 @@
-import { useState } from "react";
-import { RosService } from "../services/ros-service";
-import type { RemoteResponse } from "../types";
+import { RosService } from '../services/ros-service';
+import type { RemoteResponse } from '../types';
 
-interface UseGetRemoteByAccessKeyProps {
+interface useGetRemoteByAccessKeyProps {
   rosUrl: string;
+  accessKey: string;
+  remoteKey: string;
 }
 
-interface UseGetRemoteByAccessKey {
-  loading: boolean;
-  error: Error | null;
-  getRemoteByAccessKey: (
-    accessKey: string,
-    key: string,
-  ) => Promise<RemoteResponse>;
-}
-
-export const useGetRemoteByAccessKey = ({
+export const useGetRemoteByAccessKey = async ({
   rosUrl,
-}: UseGetRemoteByAccessKeyProps): UseGetRemoteByAccessKey => {
-  const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<Error | null>(null);
-  const rosService = RosService.getInstance();
-
-  const getRemoteByAccessKey = async (
-    accessKey: string,
-    key: string,
-  ): Promise<RemoteResponse> => {
-    try {
-      setLoading(true);
-      return await rosService.getRemoteByAccessKey(rosUrl, accessKey, key);
-    } catch {
-      setError(new Error("Failed to fetch remotes by access key"));
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  return {
-    loading,
-    error,
-    getRemoteByAccessKey,
-  };
+  accessKey,
+  remoteKey,
+}: useGetRemoteByAccessKeyProps): Promise<RemoteResponse | null> => {
+  try {
+    const rosService = RosService.getInstance();
+    return await rosService.getRemoteByAccessKey(rosUrl, accessKey, remoteKey);
+  } catch (error) {
+    console.error(
+      'Failed to fetch remote details by access key and remote key.',
+      error
+    );
+    return null;
+  }
 };

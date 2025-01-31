@@ -1,40 +1,20 @@
-import { useState } from "react";
-import { RosService } from "../services/ros-service";
-import type { HostResponse } from "../types";
+import { RosService } from '../services/ros-service';
+import type { HostResponse } from '../types';
 
-interface UseGetHostByAccessKeyProps {
+interface useGetHostByAccessKey {
   rosUrl: string;
+  accessKey: string;
 }
 
-interface UseGetHostByAccessKey {
-  loading: boolean;
-  error: Error | null;
-  getHostByAccessKey: (accessKey: string) => Promise<HostResponse>;
-}
-
-export const useGetHostByAccessKey = ({
+export const getHostByAccessKey = async ({
   rosUrl,
-}: UseGetHostByAccessKeyProps): UseGetHostByAccessKey => {
-  const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<Error | null>(null);
-  const rosService = RosService.getInstance();
-
-  const getHostByAccessKey = async (
-    accessKey: string,
-  ): Promise<HostResponse> => {
-    try {
-      setLoading(true);
-      return await rosService.getHostByAccessKey(rosUrl, accessKey);
-    } catch {
-      setError(new Error("Failed to fetch remotes by access key"));
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  return {
-    loading,
-    error,
-    getHostByAccessKey,
-  };
+  accessKey,
+}: useGetHostByAccessKey): Promise<HostResponse | null> => {
+  try {
+    const rosService = RosService.getInstance();
+    return await rosService.getHostByAccessKey(rosUrl, accessKey);
+  } catch (error) {
+    console.error('Failed to fetch hosts by access key.', error);
+    return null;
+  }
 };
