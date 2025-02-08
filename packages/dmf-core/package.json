@@ -1,6 +1,6 @@
 {
   "name": "@dream.mf/core",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "typings": "./dist/index.d.ts",
   "exports": {
     ".": {
@@ -8,7 +8,10 @@
       "require": "./dist/index.cjs"
     }
   },
-  "files": ["dist", "readme.md"],
+  "files": [
+    "dist",
+    "readme.md"
+  ],
   "license": "MIT",
   "repository": {
     "type": "git",

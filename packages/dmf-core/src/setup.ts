@@ -1,5 +1,5 @@
-import { version } from "../package.json";
-import { type Runtime, RuntimeName } from "./types";
+import { version } from '../package.json';
+import { type Runtime, RuntimeName } from './types';
 
 declare global {
   interface Window {
@@ -9,7 +9,10 @@ declare global {
 
 /** Starts the dream-mf runtime init allowing platform to function in a standard way */
 export const init = () => {
-  window.DreamMF = {
-    version: version,
-  } as Runtime;
+  // Allow nextjs silliness
+  if (typeof window !== 'undefined') {
+    window.DreamMF = {
+      version: version,
+    } as Runtime;
+  }
 };

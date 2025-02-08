@@ -1,6 +1,6 @@
 {
   "name": "@dream.mf/logging",
-  "version": "1.5.1",
+  "version": "1.6.0",
   "exports": {
     ".": {
       "import": "./dist/index.mjs",
@@ -8,7 +8,10 @@
       "types": "./dist/index.d.ts"
     }
   },
-  "files": ["dist", "readme.md"],
+  "files": [
+    "dist",
+    "readme.md"
+  ],
   "license": "MIT",
   "dependencies": {
     "@dream.mf/core": "workspace:*"

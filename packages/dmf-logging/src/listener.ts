@@ -1,6 +1,6 @@
-import { useEffect } from "react";
-import core from "./core";
-import { type LogConfig, LogType, debugPrefix } from "./types";
+import { useEffect } from 'react';
+import core from './core';
+import { type LogConfig, LogType, debugPrefix } from './types';
 
 /** Interface for the log listener config */
 export interface LogListenerProps {
@@ -13,7 +13,7 @@ const _noop = () => null;
 /** Handle the event and append any extra config based logic */
 const _handleEvent = (config, event, type, func) => {
   if (config.debug) {
-    console.log(debugPrefix, "[DEBUG]", type, event.detail);
+    console.log(debugPrefix, '[DEBUG]', type, event.detail);
   }
   func(event);
 };
@@ -39,18 +39,22 @@ export const DreamMFLogListener = ({ config }: LogListenerProps) => {
 /** Registers event listeners and appens a _noop for events not listened for */
 export const RegisterListeners = (config: LogConfig) => {
   config.logInfo &&
+    typeof window !== 'undefined' &&
     window.addEventListener(LogType.Info, (event) => {
       _handleEvent(config, event, LogType.Info, config.logInfo);
     });
   config.logException &&
+    typeof window !== 'undefined' &&
     window.addEventListener(LogType.Exception, (event) => {
       _handleEvent(config, event, LogType.Exception, config.logException);
     });
   config.logPageView &&
+    typeof window !== 'undefined' &&
     window.addEventListener(LogType.PageView, (event) => {
       _handleEvent(config, event, LogType.PageView, config.logPageView);
     });
   config.logEvent &&
+    typeof window !== 'undefined' &&
     window.addEventListener(LogType.Event, (event) => {
       _handleEvent(config, event, LogType.Event, config.logEvent);
     });
@@ -59,15 +63,19 @@ export const RegisterListeners = (config: LogConfig) => {
 /** Removes event listeners and appends the _noop */
 export const DeregisterListeners = (config: LogConfig) => {
   config.logEvent &&
+    typeof window !== 'undefined' &&
     window.removeEventListener(LogType.Event, config.logEvent || _noop());
   config.logException &&
+    typeof window !== 'undefined' &&
     window.removeEventListener(
       LogType.Exception,
-      config.logException || _noop(),
+      config.logException || _noop()
     );
   config.logPageView &&
+    typeof window !== 'undefined' &&
     window.removeEventListener(LogType.PageView, config.logPageView || _noop());
   config.logInfo &&
+    typeof window !== 'undefined' &&
     window.removeEventListener(LogType.Info, config.logInfo || _noop());
 };
 

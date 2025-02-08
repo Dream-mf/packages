@@ -1,9 +1,9 @@
-import React, { ReactElement, ReactNode, useEffect, useMemo } from "react";
-import { SigninSilentArgs } from "oidc-client-ts";
-import { hasAuthParams, useAuth } from "react-oidc-context";
-import DreamMFContextStore from "../extensions/url-store";
-import { DreamMFLogClient } from "@dream.mf/logging";
-import { registerUserProfile } from "@dream.mf/core";
+import React, { ReactElement, ReactNode, useEffect, useMemo } from 'react';
+import { SigninSilentArgs } from 'oidc-client-ts';
+import { hasAuthParams, useAuth } from 'react-oidc-context';
+import DreamMFContextStore from '../extensions/url-store';
+import { DreamMFLogClient } from '@dream.mf/logging';
+import { registerUserProfile } from '@dream.mf/core';
 
 interface DreamMFAuthGuardProps {
   children?: ReactNode | undefined;
@@ -40,9 +40,12 @@ export const DreamMFAuthGuard = ({
   useEffect(() => {
     if (!auth.isAuthenticated && !stopRedirect) {
       DreamMFLogClient.logInfo({
-        message: "Authentication: Redirecting you to the identity provider.",
+        message: 'Authentication: Redirecting you to the identity provider.',
       });
-      DreamMFContextStore.originalRequestPath = `${window.location.pathname}`;
+      // Allow nextjs silliness
+      if (typeof window !== 'undefined') {
+        DreamMFContextStore.originalRequestPath = `${window.location.pathname}`;
+      }
       auth.signinRedirect().catch(console.error);
     }
   }, [auth.isAuthenticated]);
@@ -53,7 +56,7 @@ export const DreamMFAuthGuard = ({
   const handleTokenExpiring = () => {
     auth.events.addAccessTokenExpiring((cb) => {
       DreamMFLogClient.logInfo({
-        message: "Authentication: Renewing token with the identity provider.",
+        message: 'Authentication: Renewing token with the identity provider.',
       });
       auth
         .signinSilent({
@@ -75,7 +78,7 @@ export const DreamMFAuthGuard = ({
 
   if (auth.error) {
     DreamMFLogClient.logException({
-      type: "Authentication",
+      type: 'Authentication',
       error: auth.error,
     });
   }
