@@ -1,6 +1,6 @@
 {
   "name": "@dream.mf/bundlers",
-  "version": "0.5.1",
+  "version": "0.6.0",
   "typings": "./dist/index.d.ts",
   "exports": {
     ".": {
@@ -24,7 +24,10 @@
       "types": "./dist/vite/index.d.ts"
     }
   },
-  "files": ["dist", "readme.md"],
+  "files": [
+    "dist",
+    "readme.md"
+  ],
   "license": "MIT",
   "dependencies": {
     "@dream.mf/core": "workspace:*",

@@ -1,11 +1,11 @@
-import DotenvPlugin from "dotenv-webpack";
-import HtmlWebpackPlugin from "html-webpack-plugin";
-import MiniCssExtractPlugin from "mini-css-extract-plugin";
-import webpack from "webpack";
-import defaults from "../common/defaults";
-import loaders from "../common/loaders";
-import rules from "../common/rules";
-import types from "../common/types";
+import DotenvPlugin from 'dotenv-webpack';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import webpack from 'webpack';
+import defaults from '../common/defaults';
+import loaders from '../common/loaders';
+import rules from '../common/rules';
+import types from '../common/types';
 
 const { ModuleFederationPlugin } = webpack.container;
 
@@ -17,14 +17,18 @@ const { ModuleFederationPlugin } = webpack.container;
 // biome-ignore lint/suspicious/noExplicitAny: <explanation>
 export const withBaseWebpack = (customConfig: any, isTypescript = true) => {
   loaders._envLoader();
-  const prod = process.env.NODE_ENV === "production";
+  let nodeEnv = 'development';
+  if (process && process.env && process.env.NODE_ENV) {
+    nodeEnv = process.env.NODE_ENV;
+  }
+  const prod = nodeEnv === 'production';
   return {
-    entry: `./src/index.${isTypescript ? "ts" : "js"}`,
-    mode: prod ? "production" : "development",
+    entry: `./src/index.${isTypescript ? 'ts' : 'js'}`,
+    mode: prod ? 'production' : 'development',
     devtool:
-      (process.env.NODE_ENV || "development") === "development"
-        ? "inline-source-map"
-        : "source-map",
+      (nodeEnv || 'development') === 'development'
+        ? 'inline-source-map'
+        : 'source-map',
     devServer: {
       ...defaults._defaultDevServer(customConfig.federationConfig.name),
       ...customConfig.devServer,
@@ -59,9 +63,9 @@ export const withBaseWebpack = (customConfig: any, isTypescript = true) => {
         ...customConfig.federationConfig,
       }),
       new HtmlWebpackPlugin({
-        template: "./public/index.html",
-        favicon: "./public/favicon.ico",
-        inject: "body",
+        template: './public/index.html',
+        favicon: './public/favicon.ico',
+        inject: 'body',
       }),
       new MiniCssExtractPlugin({
         filename: defaults._defaultOutputStyle(),
