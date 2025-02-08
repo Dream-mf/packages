@@ -1,6 +1,6 @@
 {
   "name": "@dream.mf/oidc",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "typings": "./dist/index.d.ts",
   "exports": {
     ".": {

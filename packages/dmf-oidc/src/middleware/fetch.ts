@@ -1,6 +1,6 @@
-import { UserManager } from "oidc-client-ts";
-import { DreamMFAuthConfig } from "../types";
-import { DreamMFLogClient } from "@dream.mf/logging";
+import { UserManager } from 'oidc-client-ts';
+import { DreamMFAuthConfig } from '../types';
+import { DreamMFLogClient } from '@dream.mf/logging';
 
 /**
  * Appends an interceptor that appends a Bearer Token to the Authorization header
@@ -13,30 +13,33 @@ export async function addInterceptors(config: DreamMFAuthConfig) {
   if (!config.useFetchInterceptor) {
     return;
   }
+  if (typeof window === 'undefined') {
+    return;
+  }
   DreamMFLogClient.logInfo({ message: `Appending fetch interceptor.` });
   const { fetch: originalFetch } = window;
   window.fetch = async (...args) => {
     const [input, init] = args;
     if (!init) {
       DreamMFLogClient.logEvent({
-        eventName: "fetch",
+        eventName: 'fetch',
         details: { url: input, user: null },
       });
       return await originalFetch(input, init);
     }
     const fetchConfig = { ...init };
-    const useAuth = init["useAuthentication"] === true;
+    const useAuth = init['useAuthentication'] === true;
     if (useAuth) {
       const userManager = new UserManager(config);
       const user = await userManager.getUser();
       const id = crypto.randomUUID();
       DreamMFLogClient.logEvent({
-        eventName: "fetch",
+        eventName: 'fetch',
         details: { url: input, id: id, user: user.profile },
       });
       if (user) {
         fetchConfig.headers = {
-          "X-Correlation-Id": id,
+          'X-Correlation-Id': id,
           Authorization: `Bearer ${await user?.id_token}`,
         };
       }
