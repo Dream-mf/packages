@@ -5,7 +5,7 @@ import webpack from 'webpack';
 import defaults from '../common/defaults';
 import loaders from '../common/loaders';
 import rules from '../common/rules';
-import types from '../common/type';
+import types from '../common/types';
 
 const { ModuleFederationPlugin } = webpack.container;
 
