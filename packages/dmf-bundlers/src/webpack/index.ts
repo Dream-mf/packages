@@ -5,7 +5,7 @@ import webpack from 'webpack';
 import defaults from '../common/defaults';
 import loaders from '../common/loaders';
 import rules from '../common/rules';
-import types from '../common/types';
+import types from '../common/type';
 
 const { ModuleFederationPlugin } = webpack.container;
 
@@ -50,7 +50,7 @@ export const withBaseWebpack = (customConfig: any, isTypescript = true) => {
         rules._rulesEsBuild(),
         rules._rulesCssStyles(),
         rules._rulesCssModules(),
-        rules._rulesAssets(),
+        ...rules._rulesAssets(),
       ],
     },
     plugins: [
