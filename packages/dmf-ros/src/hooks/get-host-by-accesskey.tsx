@@ -1,15 +1,15 @@
 import { RosService } from '../services/ros-service';
 import type { HostResponse } from '../types';
 
-interface useGetHostByAccessKey {
+interface useGetHostByAccessKeyProps {
   rosUrl: string;
   accessKey: string;
 }
 
-export const getHostByAccessKey = async ({
+export const useGetHostByAccessKey = async ({
   rosUrl,
   accessKey,
-}: useGetHostByAccessKey): Promise<HostResponse | null> => {
+}: useGetHostByAccessKeyProps): Promise<HostResponse | null> => {
   try {
     const rosService = RosService.getInstance();
     return await rosService.getHostByAccessKey(rosUrl, accessKey);
