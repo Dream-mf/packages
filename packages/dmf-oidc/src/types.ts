@@ -1,9 +1,5 @@
 import { WebStorageStateStore, type UserManagerSettings } from 'oidc-client-ts';
 
-/** OAUTH Debug Setting */
-export const isDebug =
-	process.env.OAUTH_DEBUG?.toLocaleLowerCase() === 'true' || false;
-
 /** Auth Provider config type */
 export type DreamMFAuthConfig = UserManagerSettings & {
 	useFetchInterceptor: boolean;
@@ -31,6 +27,5 @@ export const BaseAuthConfig: DreamMFAuthConfig = {
 };
 
 export default {
-	isDebug,
 	BaseAuthConfig,
 };
